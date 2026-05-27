@@ -904,6 +904,37 @@ header.hero {
         }
     }
 
+    // Monthly sprint timeline block (Retainer card)
+    .pricing-timeline {
+        background: rgba($accent, 0.05);
+        border: 1px solid rgba($accent, 0.15);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.84rem;
+            color: $text-muted;
+            padding: 0.4rem 0;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid rgba(white, 0.04);
+            }
+
+            i {
+                color: $accent;
+                font-size: 0.8rem;
+                margin-top: 3px;
+                flex-shrink: 0;
+            }
+
+            strong { color: $text; }
+        }
+    }
+
     // Credentials strip
     .credentials-strip {
         background: $bg-card;
