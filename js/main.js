@@ -52,14 +52,12 @@ if (revealEls.length > 0 && 'IntersectionObserver' in window) {
 }
 
 // Explicit modal triggers — ensures Bootstrap modals open on portfolio card clicks
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('[data-bs-toggle="modal"]').forEach(function (trigger) {
-        trigger.addEventListener('click', function () {
-            var targetSel = trigger.getAttribute('data-bs-target');
-            if (!targetSel || !window.bootstrap) return;
-            var modalEl = document.querySelector(targetSel);
-            if (!modalEl) return;
-            bootstrap.Modal.getOrCreateInstance(modalEl).show();
-        });
+document.querySelectorAll('[data-bs-toggle="modal"]').forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+        var targetSel = trigger.getAttribute('data-bs-target');
+        if (!targetSel || !window.bootstrap) return;
+        var modalEl = document.querySelector(targetSel);
+        if (!modalEl) return;
+        bootstrap.Modal.getOrCreateInstance(modalEl).show();
     });
 });
