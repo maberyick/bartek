@@ -624,6 +624,25 @@ header.hero {
             margin-bottom: 0.75rem;
         }
 
+        .portfolio-view-more {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: $accent;
+            border: 1px solid $border-accent;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-top: 0.25rem;
+            opacity: 0;
+            @include transition-all;
+        }
+
+        &.portfolio-clickable {
+            cursor: pointer;
+            &:hover .portfolio-view-more { opacity: 1; }
+        }
+
         // Coming soon state
         &.coming-soon {
             img {
@@ -653,6 +672,143 @@ header.hero {
                 padding: 5px 14px;
                 margin-top: 0.5rem;
             }
+        }
+    }
+}
+
+// ============================================================
+// PORTFOLIO MODALS
+// ============================================================
+
+.portfolio-modal {
+    .modal-content {
+        background: $bg-secondary;
+        border: 1px solid $border-accent;
+        border-radius: var(--radius-lg);
+        color: $text;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid $border;
+        padding: 1.5rem 1.75rem 1.25rem;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .modal-category {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: $accent;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: white;
+            margin: 0;
+        }
+    }
+
+    .modal-img {
+        height: 220px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .modal-body {
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .modal-section {
+        h6 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: $accent;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            i { margin-right: 6px; }
+        }
+
+        p { font-size: 0.9rem; color: $text-muted; margin: 0; line-height: 1.65; }
+
+        ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            li {
+                font-size: 0.9rem;
+                color: $text-muted;
+                margin-bottom: 0.35rem;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .modal-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+
+        span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba($accent, 0.08);
+            border: 1px solid rgba($accent, 0.2);
+            color: $accent;
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+    }
+
+    .modal-pub-link {
+        font-size: 0.88rem;
+        color: $accent;
+        text-decoration: none;
+        line-height: 1.5;
+        &:hover { text-decoration: underline; }
+    }
+
+    .modal-footer {
+        border-top: 1px solid $border;
+        padding: 1rem 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        .modal-org {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: $text-muted;
+
+            img {
+                width: 22px;
+                height: 22px;
+                object-fit: contain;
+                background: white;
+                border-radius: 4px;
+                padding: 2px;
+            }
+        }
+
+        .btn-outline-secondary {
+            border-color: $border;
+            color: $text-muted;
+            font-size: 0.8rem;
+            &:hover { background: $border; color: $text; }
         }
     }
 }

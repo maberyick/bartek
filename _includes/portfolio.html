@@ -10,23 +10,25 @@
             </div>
         </div>
         <div class="row g-4 reveal">
-            <!-- Genentech — real -->
+            <!-- Genentech — real, clickable -->
             <div class="col-lg-4 col-md-6">
-                <div class="portfolio-item">
+                <div class="portfolio-item portfolio-clickable" data-bs-toggle="modal" data-bs-target="#modal-genentech" role="button" tabindex="0">
                     <img src="img/portfolio/gen_img_8.jpg" alt="Genentech imaging pipeline" />
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Processing Pipeline</div>
                         <div class="portfolio-title">Genentech &mdash; Imaging Workflow in Python</div>
+                        <span class="portfolio-view-more"><i class="fa-solid fa-expand"></i> View Case Study</span>
                     </div>
                 </div>
             </div>
-            <!-- Case Western / Emory / GT — real -->
+            <!-- Case Western / Emory / GT — real, clickable -->
             <div class="col-lg-4 col-md-6">
-                <div class="portfolio-item">
+                <div class="portfolio-item portfolio-clickable" data-bs-toggle="modal" data-bs-target="#modal-caswestern" role="button" tabindex="0">
                     <img src="img/portfolio/phenotil_img_1.jpg" alt="Histopathology research publication" />
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">PhD Research &mdash; Peer-Reviewed Publication</div>
                         <div class="portfolio-title">Histopathology Workflow &mdash; Case Western &amp; Emory / Georgia Tech</div>
+                        <span class="portfolio-view-more"><i class="fa-solid fa-expand"></i> View Case Study</span>
                     </div>
                 </div>
             </div>
@@ -84,4 +86,99 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal: Genentech -->
+    <div class="modal fade portfolio-modal" id="modal-genentech" tabindex="-1" aria-labelledby="modal-genentech-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-category">Processing Pipeline &mdash; Research Internship</span>
+                        <h4 class="modal-title" id="modal-genentech-label">Genentech &mdash; Imaging Workflow in Python</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-img">
+                    <img src="img/portfolio/gen_img_8.jpg" alt="Genentech imaging pipeline" />
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-circle-info"></i> Overview</h6>
+                        <p>During a research internship at Genentech, designed and built a Python-based imaging processing workflow for analysis of biomedical images. The pipeline automated key preprocessing, feature extraction, and analysis steps to support research throughput.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-list-check"></i> Scope</h6>
+                        <ul>
+                            <li>End-to-end image preprocessing and normalization pipeline</li>
+                            <li>Automated feature extraction from high-content imaging data</li>
+                            <li>Python-native tooling integrated into existing research workflows</li>
+                            <li>Reproducible, scriptable analysis replacing manual steps</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-microchip"></i> Stack</h6>
+                        <div class="modal-stack">
+                            <span>Python</span><span>OpenCV</span><span>scikit-image</span><span>NumPy</span><span>Pandas</span><span>Jupyter</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-org"><img src="img/logos/genentech.png" alt="Genentech"> Genentech &mdash; Research Intern</span>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Case Western / Emory / GT -->
+    <div class="modal fade portfolio-modal" id="modal-caswestern" tabindex="-1" aria-labelledby="modal-caswestern-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-category">PhD Research &mdash; Peer-Reviewed Publication</span>
+                        <h4 class="modal-title" id="modal-caswestern-label">Histopathology Workflow &mdash; Case Western &amp; Emory / Georgia Tech</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-img">
+                    <img src="img/portfolio/phenotil_img_1.jpg" alt="Histopathology pipeline" />
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-circle-info"></i> Overview</h6>
+                        <p>As part of doctoral research at Emory University / Georgia Tech in collaboration with Case Western Reserve University, developed <strong>PhenoTIL</strong> — a computational pathology pipeline that uses H&amp;E-stained whole slide images to identify immune cell niches and quantify tumor-infiltrating lymphocyte (TIL) spatial patterns predictive of immunotherapy outcomes in lung cancer.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-list-check"></i> Scope</h6>
+                        <ul>
+                            <li>Whole slide image (WSI) ingestion and tissue segmentation</li>
+                            <li>Nuclear detection and TIL classification on H&amp;E stains</li>
+                            <li>Spatial immune niche quantification and feature engineering</li>
+                            <li>Multi-institutional cohort validation across NSCLC and SCLC datasets</li>
+                            <li>Published in <em>NPJ Precision Oncology</em> (2023, cited 39+) and subsequent follow-up (2026)</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-microchip"></i> Stack</h6>
+                        <div class="modal-stack">
+                            <span>Python</span><span>PyTorch</span><span>OpenSlide</span><span>QuPath</span><span>scikit-learn</span><span>Docker</span><span>NumPy</span><span>Matplotlib</span>
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-arrow-up-right-from-square"></i> Publication</h6>
+                        <a href="https://www.nature.com/articles/s41698-023-00403-x" target="_blank" rel="noopener noreferrer" class="modal-pub-link">
+                            NPJ Precision Oncology 2023 &mdash; Deep computational image analysis of immune cell niches reveals treatment-specific outcome associations in lung cancer
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-org"><img src="img/logos/emory.png" alt="Emory"> Emory / Georgia Tech &amp; Case Western Reserve University</span>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </section>
+
