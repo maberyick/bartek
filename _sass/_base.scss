@@ -398,6 +398,95 @@ header.hero {
 }
 
 // ============================================================
+// INSTITUTIONS / TRACK RECORD
+// ============================================================
+
+#institutions {
+    background: $bg-primary;
+    padding: 80px 0;
+
+    .institution-card {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        background: $bg-card;
+        border: 1px solid $border;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        height: 100%;
+        @include transition-all;
+
+        &:hover {
+            border-color: $border-accent;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba($accent, 0.07);
+        }
+
+        .inst-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: rgba($accent, 0.1);
+            border: 1px solid rgba($accent, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: $accent;
+        }
+
+        .inst-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .inst-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: $text;
+            margin-bottom: 0.35rem;
+            line-height: 1.3;
+        }
+
+        .inst-role {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            border-radius: 100px;
+            padding: 3px 10px;
+            margin-bottom: 0.6rem;
+
+            i { font-size: 0.65rem; }
+
+            &.role-contract {
+                color: $accent;
+                background: rgba($accent, 0.1);
+                border: 1px solid rgba($accent, 0.25);
+            }
+
+            &.role-research {
+                color: lighten($accent2, 20%);
+                background: rgba($accent2, 0.12);
+                border: 1px solid rgba($accent2, 0.3);
+            }
+        }
+
+        .inst-detail {
+            font-size: 0.85rem;
+            color: $text-muted;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+}
+
+// ============================================================
 // SERVICES
 // ============================================================
 
