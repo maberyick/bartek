@@ -434,6 +434,20 @@ header.hero {
             justify-content: center;
             font-size: 1.1rem;
             color: $accent;
+
+            &.inst-icon-img {
+                background: #fff;
+                border-color: rgba(255,255,255,0.15);
+                padding: 5px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    display: block;
+                    border-radius: 6px;
+                }
+            }
         }
 
         .inst-body {
