@@ -1,0 +1,237 @@
+---
+layout: casestudy
+title: "PhenoTIL / HistoTIL — PhD Computational Pathology Research | BARTEK LLC"
+description: "Case study: Deep computational image analysis of immune cell niches in lung cancer H&E whole slide images. Published in NPJ Precision Oncology, Science Advances, and Lancet eBioMedicine."
+---
+
+<!-- Case Study: PhenoTIL / HistoTIL -->
+<section class="cs-hero">
+    <div class="container">
+        <nav class="cs-breadcrumb" aria-label="breadcrumb">
+            <a href="/#portfolio"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        </nav>
+        <div class="cs-hero-inner">
+            <span class="cs-tag">PhD Research &mdash; Peer-Reviewed Publications</span>
+            <h1 class="cs-title">PhenoTIL &amp; HistoTIL &mdash; Computational Pathology for Immunotherapy Prediction</h1>
+            <p class="cs-subtitle">Deep learning pipelines that quantify tumor-infiltrating lymphocyte (TIL) spatial patterns in H&amp;E whole slide images to predict immunotherapy response in lung cancer &mdash; validated across 226 patients in 5 cohorts.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-chip"><img src="img/logos/emory.png" alt="Emory" class="cs-meta-logo"> Emory / Georgia Tech</span>
+                <span class="cs-meta-chip"><img src="img/logos/casewestern.png" alt="Case Western" class="cs-meta-logo"> Case Western Reserve</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-graduation-cap"></i> PhD &mdash; Doctoral Research</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-calendar"></i> 2018 &ndash; 2024</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-tag"></i> Computational Pathology &middot; AI/ML</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cs-body">
+    <div class="container">
+        <div class="row g-5">
+
+            <!-- Main content column -->
+            <div class="col-lg-8">
+
+                <!-- Overview -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-circle-info"></i> Overview</h2>
+                    <p>As a <strong>Graduate Research Scientist</strong> at Emory University / Georgia Tech (2018&ndash;2024), in collaboration with the Madabhushi Lab at <strong>Case Western Reserve University</strong>, developed two interconnected computational pathology pipelines &mdash; <strong>HistoTIL</strong> and <strong>PhenoTIL</strong> &mdash; for automated analysis of tumor-infiltrating lymphocytes (TILs) in H&amp;E-stained whole slide images (WSI).</p>
+                    <p>The work produced <strong>data models and visualizations for 4,000+ histopathology images</strong>, scalable deep learning pipelines running on HPC and cloud resources, and machine learning models predicting patient outcomes and immunotherapy response &mdash; resulting in multiple peer-reviewed publications in <em>Nature</em>, <em>Science Advances</em>, and <em>The Lancet</em>, and three US patents.</p>
+                </div>
+
+                <!-- Screenshot 1 -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-image"></i> Pipeline Overview &mdash; HistoTIL</h2>
+                    <div class="cs-screenshot">
+                        <img src="img/portfolio/histotil_img_3.jpg" alt="HistoTIL pipeline: WSI ingestion, cell detection, feature extraction, prognostic and predictive modeling" />
+                    </div>
+                    <p class="cs-caption">
+                        <strong>(A)</strong> Primary tumor biopsy digitized to a WSI at 83,712&times;65,024 px.
+                        <strong>(B)</strong> Patch tiling (2048&times;2048 px) for GPU-accelerated processing.
+                        <strong>(C)</strong> Per-patch cell detection: lymphocytes (blue) vs. non-lymphocytes (red).
+                        <strong>(D)</strong> Spatial feature extraction: cell XY positions, density heatmaps, and immune clustering.
+                        <strong>(E)</strong> ICI outcome prediction for pembrolizumab, nivolumab, and atezolizumab.
+                        <strong>(F)</strong> Validated on 226 patients (88 responders / 138 non-responders) across 5 cohorts.
+                    </p>
+                </div>
+
+                <!-- Pipeline Steps -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-sitemap"></i> Pipeline Stages</h2>
+                    <div class="cs-steps">
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">01</div>
+                            <div class="cs-step-body">
+                                <h4>WSI Digitization &amp; Patch Extraction</h4>
+                                <p>Lung cancer biopsy slides digitized to gigapixel whole slide images (~83,000&times;65,000 px). OpenSlide-based ingestion followed by non-overlapping 2048&times;2048 px patch tiling for GPU-parallel processing. Tissue-background separation filters out uninformative regions before inference.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">02</div>
+                            <div class="cs-step-body">
+                                <h4>Nuclear Detection &amp; TIL Classification</h4>
+                                <p>Deep learning model (PyTorch) detects individual nuclei per patch and classifies each as <strong>lymphocyte</strong> (TIL candidate) or <strong>non-lymphocyte</strong> based on morphological features in H&amp;E stain &mdash; no special staining required. Cell XY coordinates are recorded at slide-level resolution (80,000&times;65,000 px).</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">03</div>
+                            <div class="cs-step-body">
+                                <h4>Spatial Feature Engineering &mdash; Immune Niches</h4>
+                                <p>From cell positions, computed spatial immune features: TIL density heatmaps, immune cell grouping/clustering metrics, proximity of TILs to tumor nuclei, and niche-level aggregations (PhenoTIL approach). These spatial phenotypes capture immune architecture that raw cell counts cannot.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">04</div>
+                            <div class="cs-step-body">
+                                <h4>Prognostic &amp; Predictive Modeling</h4>
+                                <p>Trained scikit-learn and PyTorch models on extracted spatial features to predict: (1) <strong>overall survival</strong> (prognostic) and (2) <strong>response to ICI agents</strong> — pembrolizumab, nivolumab, atezolizumab (predictive). Models outperformed PD-L1 expression alone in several cohorts.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">05</div>
+                            <div class="cs-step-body">
+                                <h4>Multi-Institutional Cohort Validation</h4>
+                                <p>Validated across <strong>226 patients in 5 independent cohorts</strong> (NSCLC and SCLC) from multiple institutions. Pipelines containerized with Docker for reproducibility and run on HPC + cloud resources to handle 4,000+ WSI at scale.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Screenshot 2 -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-chart-bar"></i> PhenoTIL &mdash; Immune Niche Pipeline</h2>
+                    <div class="cs-screenshot">
+                        <img src="img/portfolio/phenotil_img_1.jpg" alt="PhenoTIL pipeline: tissue preparation, image processing, cell identification, feature extraction, clustering, molecular assessment" />
+                    </div>
+                    <p class="cs-caption">
+                        The PhenoTIL pipeline from tissue preparation through molecular assessment: image preprocessing, cell identification, spatial feature extraction, immune niche clustering, and multi-modal integration with clinical outcome data.
+                    </p>
+                </div>
+
+                <!-- Publications -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-book-open"></i> Publications from This Research</h2>
+                    <div class="cs-pubs">
+
+                        <a href="https://www.nature.com/articles/s41698-023-00403-x" target="_blank" rel="noopener noreferrer" class="cs-pub-card">
+                            <div class="cs-pub-meta">
+                                <span class="cs-pub-tag first-author">First Author</span>
+                                <span class="cs-pub-journal">NPJ Precision Oncology &middot; 2023</span>
+                                <span class="cs-pub-cite">Cited 39+</span>
+                            </div>
+                            <p class="cs-pub-title">Deep computational image analysis of immune cell niches reveals treatment-specific outcome associations in lung cancer</p>
+                            <span class="cs-pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> nature.com</span>
+                        </a>
+
+                        <a href="https://www.nature.com/articles/s41698-025-01225-9" target="_blank" rel="noopener noreferrer" class="cs-pub-card">
+                            <div class="cs-pub-meta">
+                                <span class="cs-pub-tag first-author">First Author</span>
+                                <span class="cs-pub-journal">NPJ Precision Oncology &middot; 2026</span>
+                            </div>
+                            <p class="cs-pub-title">Computational pathology features of immune architecture predict clinically relevant outcomes in small-cell lung cancer (SCLC)</p>
+                            <span class="cs-pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> nature.com</span>
+                        </a>
+
+                        <a href="https://www.science.org/doi/10.1126/sciadv.abn3966" target="_blank" rel="noopener noreferrer" class="cs-pub-card">
+                            <div class="cs-pub-meta">
+                                <span class="cs-pub-tag co-author">Co-Author</span>
+                                <span class="cs-pub-journal">Science Advances &middot; 2022</span>
+                            </div>
+                            <p class="cs-pub-title">Spatial interplay patterns of cancer nuclei and tumor-infiltrating lymphocytes (TILs) predict clinical benefit for immune checkpoint inhibitors</p>
+                            <span class="cs-pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> science.org</span>
+                        </a>
+
+                        <a href="https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(21)00274-7/fulltext" target="_blank" rel="noopener noreferrer" class="cs-pub-card">
+                            <div class="cs-pub-meta">
+                                <span class="cs-pub-tag co-author">Co-Author</span>
+                                <span class="cs-pub-journal">Lancet eBioMedicine &middot; 2021</span>
+                                <span class="cs-pub-cite">Cited 37+</span>
+                            </div>
+                            <p class="cs-pub-title">A prognostic and predictive computational pathology image signature for added benefit of adjuvant chemotherapy in early stage NSCLC</p>
+                            <span class="cs-pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> thelancet.com</span>
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="cs-sidebar reveal">
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Institutions</h5>
+                        <div class="cs-sidebar-org" style="margin-bottom:0.75rem">
+                            <img src="img/logos/emory.png" alt="Emory" />
+                            <div>
+                                <strong>Emory University / Georgia Tech</strong><br>
+                                <span>PhD &mdash; Biomedical Engineering</span>
+                            </div>
+                        </div>
+                        <div class="cs-sidebar-org">
+                            <img src="img/logos/casewestern.png" alt="Case Western" />
+                            <div>
+                                <strong>Case Western Reserve University</strong><br>
+                                <span>Research Collaboration (Madabhushi Lab)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Role</h5>
+                        <p>Graduate Research Scientist &mdash; PhD Doctoral Research</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Period</h5>
+                        <p>Feb 2018 &ndash; Jan 2024</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Scale</h5>
+                        <p>4,000+ histopathology images &bull; 226 patients &bull; 5 independent cohorts &bull; NSCLC &amp; SCLC</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Tech Stack</h5>
+                        <div class="cs-stack">
+                            <span>Python</span>
+                            <span>PyTorch</span>
+                            <span>OpenSlide</span>
+                            <span>QuPath</span>
+                            <span>scikit-learn</span>
+                            <span>Docker</span>
+                            <span>NumPy</span>
+                            <span>Matplotlib</span>
+                            <span>HPC / Cloud</span>
+                        </div>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Outcomes</h5>
+                        <ul class="cs-sidebar-list">
+                            <li>4 peer-reviewed publications</li>
+                            <li>2 US patents (CWRU-assigned)</li>
+                            <li>39+ citations (NPJ 2023)</li>
+                            <li>Multi-institutional validation</li>
+                            <li>Open-source reproducible pipelines</li>
+                        </ul>
+                    </div>
+
+                    <a href="/#contact" class="cs-cta-btn">
+                        Build Something Similar <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
