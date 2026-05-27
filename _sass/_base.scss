@@ -835,6 +835,18 @@ header.hero {
 #contact {
     background: $bg-primary;
 
+    .contact-card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+
+        &:hover .contact-card {
+            border-color: $border-accent;
+            transform: translateY(-4px);
+        }
+    }
+
     .contact-card {
         background: $bg-card;
         border: 1px solid $border;
@@ -843,11 +855,6 @@ header.hero {
         text-align: center;
         height: 100%;
         @include transition-all;
-
-        &:hover {
-            border-color: $border-accent;
-            transform: translateY(-4px);
-        }
 
         .contact-icon {
             font-size: 2rem;
@@ -861,10 +868,9 @@ header.hero {
             margin-bottom: 0.5rem;
         }
 
-        a {
+        span {
             color: $text-muted;
             font-size: 0.9rem;
-            &:hover { color: $accent; }
         }
     }
 }
