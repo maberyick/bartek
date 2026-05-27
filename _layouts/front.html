@@ -3,9 +3,22 @@
     {% include head.html %}
 
     <body id="page-top">
-        {% include nav.html %} {% include header.html %} {% include
-        call-to-action.html %} {% include services.html %} {% include
-        portfolio.html %} {% include aside.html %} {% include contact.html %} {%
-        include scripts.html %}
+        {% include nav.html %}
+        {% include header.html %}
+        {% include call-to-action.html %}
+        {% include services.html %}
+        {% include portfolio.html %}
+        {% include team.html %}
+        {% include blog.html %}
+        {% include pricing.html %}
+        {% include aside.html %}
+        {% include contact.html %}
+        <footer>
+            <div class="container">
+                <p>&copy; {{ site.time | date: '%Y' }} BARTEK LLC. All rights reserved. &mdash;
+                <a href="mailto:bartek.main@proton.me">bartek.main@proton.me</a></p>
+            </div>
+        </footer>
+        {% include scripts.html %}
     </body>
 </html>
