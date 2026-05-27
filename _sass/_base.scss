@@ -699,6 +699,13 @@ header.hero {
             font-size: 1.15rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
+
+            .team-name-link {
+                color: $text;
+                text-decoration: none;
+                @include transition-all;
+                &:hover { color: $accent; }
+            }
         }
 
         .team-role {
