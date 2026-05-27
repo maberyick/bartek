@@ -11,12 +11,13 @@ description: "Case study: Python-based computational imaging pipeline built duri
             <a href="/#portfolio"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
         </nav>
         <div class="cs-hero-inner">
-            <span class="cs-tag">Processing Pipeline &mdash; Research Internship</span>
+            <span class="cs-tag">Imaging Pipeline &mdash; Research Pathology Internship</span>
             <h1 class="cs-title">Genentech &mdash; Imaging Workflow in Python</h1>
-            <p class="cs-subtitle">A Python-native computational imaging pipeline for multiplexed tissue image analysis: automated segmentation, intensity normalization, and tissue compartment classification.</p>
+            <p class="cs-subtitle">Python-based image analysis workflows for Genentech&rsquo;s Department of Research Pathology &mdash; automating multiplex tissue imaging at scale, deployed in an HPC environment, cutting processing time by ~30%.</p>
             <div class="cs-meta-row">
                 <span class="cs-meta-chip"><img src="img/logos/genentech.png" alt="Genentech" class="cs-meta-logo"> Genentech</span>
-                <span class="cs-meta-chip"><i class="fa-solid fa-flask"></i> Research Internship</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-flask"></i> Imaging Scientist Intern</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-calendar"></i> Jun &ndash; Aug 2023</span>
                 <span class="cs-meta-chip"><i class="fa-solid fa-location-dot"></i> South San Francisco, CA</span>
                 <span class="cs-meta-chip"><i class="fa-solid fa-tag"></i> Computational Pathology</span>
             </div>
@@ -34,8 +35,8 @@ description: "Case study: Python-based computational imaging pipeline built duri
                 <!-- Overview -->
                 <div class="cs-section reveal">
                     <h2 class="cs-section-heading"><i class="fa-solid fa-circle-info"></i> Overview</h2>
-                    <p>During a research internship at <strong>Genentech</strong> (Roche Group, South San Francisco), designed and implemented a Python-based computational imaging pipeline to process multiplexed immunofluorescence (mIF) tissue images. The goal was to automate core preprocessing steps — tissue segmentation, marker intensity normalization, and anatomical compartment classification — enabling reproducible, high-throughput analysis across large image cohorts.</p>
-                    <p>The work directly supported downstream oncology research by delivering clean, classified tissue regions (tumor, stroma, background) as inputs to biomarker quantification and spatial analysis workflows.</p>
+                    <p>As an <strong>Imaging Scientist Intern</strong> in Genentech&rsquo;s Department of Research Pathology (Jun&ndash;Aug 2023), developed and implemented Python-based image analysis workflows for multiplex tissue imaging. The project automated core preprocessing and ETL steps &mdash; tissue segmentation, marker intensity normalization, data source integration, and compartment classification &mdash; reducing imaging data processing time by approximately <strong>30%</strong>.</p>
+                    <p>The workflows were deployed in Genentech&rsquo;s <strong>high-performance computing (HPC)</strong> environment, enabling accurate detection of histologic features across diverse multiplex tissue image types at scale. Multiple data sources were consolidated into unified, research-ready datasets to support downstream biomarker quantification and oncology research.</p>
                 </div>
 
                 <!-- Screenshot -->
@@ -60,23 +61,31 @@ description: "Case study: Python-based computational imaging pipeline built duri
                             <div class="cs-step-num">01</div>
                             <div class="cs-step-body">
                                 <h4>Tissue Segmentation</h4>
-                                <p>Applied Otsu-based thresholding on the PanCK channel to delineate tissue from glass/background. Multiple thresholding strategies were evaluated side-by-side to maximize tissue recall while rejecting background artifacts.</p>
+                                <p>Applied Otsu-based thresholding on the PanCK channel to delineate tissue regions from glass and background. Multiple thresholding strategies were evaluated side-by-side to maximize tissue recall across diverse multiplex image types.</p>
                             </div>
                         </div>
 
                         <div class="cs-step">
                             <div class="cs-step-num">02</div>
                             <div class="cs-step-body">
-                                <h4>PanCK Intensity Normalization &amp; Outlier Trimming</h4>
-                                <p>Computed 3D surface distributions of PanCK pixel intensity across the full tissue area. Identified and trimmed high-intensity outlier pixels that skew normalization — shown as the dashed cutoff line in the surface plot. This step ensures downstream marker quantification is not dominated by saturated regions.</p>
+                                <h4>ETL &amp; Multi-Source Data Integration</h4>
+                                <p>Designed ETL patterns to ingest immunofluorescence imaging data from multiple sources and consolidate it into unified, research-ready datasets. This standardized formats, resolved cross-source inconsistencies, and eliminated manual preparation steps &mdash; a core driver of the ~30% efficiency gain.</p>
                             </div>
                         </div>
 
                         <div class="cs-step">
                             <div class="cs-step-num">03</div>
                             <div class="cs-step-body">
-                                <h4>Compartment Classification</h4>
-                                <p>Generated pixel-level tissue masks classifying each region as <strong>Tumor</strong> (PanCK-positive), <strong>Stroma</strong> (tissue-positive, PanCK-negative), or <strong>Background</strong>. These masks feed directly into region-specific biomarker analysis — e.g., computing TIL density within stroma vs. tumor separately.</p>
+                                <h4>PanCK Intensity Normalization &amp; Outlier Trimming</h4>
+                                <p>Computed 3D surface distributions of PanCK pixel intensity across the full tissue area. Identified and trimmed high-intensity outlier pixels (dashed cutoff in the surface plot) to ensure downstream marker quantification is not dominated by saturated regions.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">04</div>
+                            <div class="cs-step-body">
+                                <h4>Compartment Classification &amp; HPC Deployment</h4>
+                                <p>Generated pixel-level tissue masks classifying each region as <strong>Tumor</strong> (PanCK-positive), <strong>Stroma</strong> (tissue-positive, PanCK-negative), or <strong>Background</strong>. The full pipeline was deployed on Genentech&rsquo;s HPC cluster, enabling batch processing of large image cohorts for the Research Pathology team.</p>
                             </div>
                         </div>
 
@@ -102,12 +111,17 @@ description: "Case study: Python-based computational imaging pipeline built duri
 
                     <div class="cs-sidebar-block">
                         <h5 class="cs-sidebar-heading">Role</h5>
-                        <p>Research Intern &mdash; Computational Biology</p>
+                        <p>Imaging Scientist Intern &mdash; Research Pathology</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Period</h5>
+                        <p>Jun &ndash; Aug 2023</p>
                     </div>
 
                     <div class="cs-sidebar-block">
                         <h5 class="cs-sidebar-heading">Focus Area</h5>
-                        <p>Multiplexed immunofluorescence (mIF) image analysis &bull; Oncology biomarker research</p>
+                        <p>Multiplex immunofluorescence (mIF) imaging &bull; ETL for imaging data &bull; HPC workflow deployment</p>
                     </div>
 
                     <div class="cs-sidebar-block">
@@ -126,11 +140,12 @@ description: "Case study: Python-based computational imaging pipeline built duri
                     <div class="cs-sidebar-block">
                         <h5 class="cs-sidebar-heading">Deliverables</h5>
                         <ul class="cs-sidebar-list">
-                            <li>Tissue segmentation module</li>
-                            <li>Intensity normalization pipeline</li>
-                            <li>3-class compartment classifier</li>
-                            <li>Reproducible Jupyter notebooks</li>
-                            <li>Integration with existing research workflows</li>
+                            <li>Tissue segmentation module (Otsu-based)</li>
+                            <li>ETL pipeline for multi-source mIF data</li>
+                            <li>Intensity normalization with outlier trimming</li>
+                            <li>3-class compartment classifier (Tumor / Stroma / Background)</li>
+                            <li>HPC-deployed batch processing workflow</li>
+                            <li>~30% reduction in processing time</li>
                         </ul>
                     </div>
 
