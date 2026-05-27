@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+    {% include head.html %}
+
+    <body id="page-top" class="casestudy-page">
+        {% include nav-casestudy.html %}
+        {{ content }}
+        <footer>
+            <div class="container">
+                <p>&copy; {{ site.time | date: '%Y' }} BARTEK LLC. All rights reserved. &mdash;
+                <a href="mailto:bartek.main@proton.me">bartek.main@proton.me</a></p>
+            </div>
+        </footer>
+        {% include scripts.html %}
+    </body>
+</html>

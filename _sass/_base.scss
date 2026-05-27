@@ -810,6 +810,303 @@ header.hero {
             font-size: 0.8rem;
             &:hover { background: $border; color: $text; }
         }
+
+        .btn-accent-outline {
+            border: 1px solid $border-accent;
+            color: $accent;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba($accent, 0.06);
+            &:hover { background: rgba($accent, 0.15); color: $accent; }
+        }
+    }
+}
+
+// ============================================================
+// CASE STUDY PAGES
+// ============================================================
+
+.casestudy-page {
+
+    .cs-hero {
+        background: $bg-primary;
+        padding: 140px 0 60px;
+        border-bottom: 1px solid $border;
+    }
+
+    .cs-breadcrumb {
+        margin-bottom: 2rem;
+        a {
+            color: $text-muted;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            @include transition-all;
+            &:hover { color: $accent; }
+        }
+    }
+
+    .cs-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: $accent;
+        background: rgba($accent, 0.08);
+        border: 1px solid rgba($accent, 0.2);
+        border-radius: 100px;
+        padding: 4px 14px;
+        margin-bottom: 1rem;
+    }
+
+    .cs-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(1.75rem, 4vw, 2.75rem);
+        font-weight: 800;
+        color: white;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .cs-subtitle {
+        font-size: 1.05rem;
+        color: $text-muted;
+        max-width: 700px;
+        line-height: 1.7;
+        margin-bottom: 1.75rem;
+    }
+
+    .cs-meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .cs-meta-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $text-muted;
+        background: $bg-card;
+        border: 1px solid $border;
+        border-radius: 8px;
+        padding: 5px 12px;
+
+        .cs-meta-logo {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            background: white;
+            border-radius: 3px;
+            padding: 1px;
+        }
+    }
+
+    .cs-body {
+        background: $bg-secondary;
+        padding: 80px 0 100px;
+    }
+
+    .cs-section {
+        margin-bottom: 3rem;
+
+        &-heading {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: $accent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            i { margin-right: 8px; }
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: $text-muted;
+            line-height: 1.75;
+            margin-bottom: 0.9rem;
+        }
+    }
+
+    .cs-screenshot {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid $border-accent;
+        margin-bottom: 1rem;
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .cs-caption {
+        font-size: 0.82rem !important;
+        color: $text-muted;
+        line-height: 1.6 !important;
+        background: rgba($accent, 0.04);
+        border-left: 3px solid $border-accent;
+        padding: 10px 14px;
+        border-radius: 0 6px 6px 0;
+    }
+
+    .cs-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .cs-step {
+        display: flex;
+        gap: 1.25rem;
+        background: $bg-card;
+        border: 1px solid $border;
+        border-radius: var(--radius-lg);
+        padding: 1.25rem 1.5rem;
+        @include transition-all;
+
+        &:hover {
+            border-color: $border-accent;
+        }
+
+        &-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: rgba($accent, 0.25);
+            line-height: 1;
+            min-width: 42px;
+            padding-top: 2px;
+        }
+
+        &-body {
+            h4 {
+                font-size: 1rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 0.4rem;
+            }
+            p {
+                font-size: 0.88rem;
+                color: $text-muted;
+                line-height: 1.65;
+                margin: 0;
+            }
+        }
+    }
+
+    // Sidebar
+    .cs-sidebar {
+        position: sticky;
+        top: 90px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        background: $bg-card;
+        border: 1px solid $border;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    }
+
+    .cs-sidebar-block {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid $border;
+
+        &:last-of-type { border-bottom: none; }
+
+        h5.cs-sidebar-heading {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: $accent;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+        }
+
+        p {
+            font-size: 0.88rem;
+            color: $text-muted;
+            margin: 0;
+            line-height: 1.55;
+        }
+    }
+
+    .cs-sidebar-org {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        strong {
+            font-size: 0.92rem;
+            color: $text;
+            display: block;
+        }
+
+        span {
+            font-size: 0.78rem;
+            color: $text-muted;
+        }
+    }
+
+    .cs-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+
+        span {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba($accent, 0.08);
+            border: 1px solid rgba($accent, 0.2);
+            color: $accent;
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+    }
+
+    .cs-sidebar-list {
+        margin: 0;
+        padding-left: 1.1rem;
+        li {
+            font-size: 0.85rem;
+            color: $text-muted;
+            margin-bottom: 0.3rem;
+        }
+    }
+
+    .cs-cta-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 1.25rem 1.5rem;
+        padding: 11px 0;
+        background: linear-gradient(135deg, $accent, $accent2);
+        color: $bg-primary;
+        font-weight: 700;
+        font-size: 0.88rem;
+        border-radius: 8px;
+        text-decoration: none;
+        @include transition-all;
+
+        &:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
     }
 }
 

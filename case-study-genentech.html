@@ -1,0 +1,146 @@
+---
+layout: casestudy
+title: "Genentech — Imaging Workflow in Python | BARTEK LLC"
+description: "Case study: Python-based computational imaging pipeline built during research internship at Genentech. Tissue segmentation, PanCK intensity normalization, and compartment classification."
+---
+
+<!-- Case Study: Genentech -->
+<section class="cs-hero">
+    <div class="container">
+        <nav class="cs-breadcrumb" aria-label="breadcrumb">
+            <a href="/#portfolio"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+        </nav>
+        <div class="cs-hero-inner">
+            <span class="cs-tag">Processing Pipeline &mdash; Research Internship</span>
+            <h1 class="cs-title">Genentech &mdash; Imaging Workflow in Python</h1>
+            <p class="cs-subtitle">A Python-native computational imaging pipeline for multiplexed tissue image analysis: automated segmentation, intensity normalization, and tissue compartment classification.</p>
+            <div class="cs-meta-row">
+                <span class="cs-meta-chip"><img src="img/logos/genentech.png" alt="Genentech" class="cs-meta-logo"> Genentech</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-flask"></i> Research Internship</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-location-dot"></i> South San Francisco, CA</span>
+                <span class="cs-meta-chip"><i class="fa-solid fa-tag"></i> Computational Pathology</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cs-body">
+    <div class="container">
+        <div class="row g-5">
+
+            <!-- Main content column -->
+            <div class="col-lg-8">
+
+                <!-- Overview -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-circle-info"></i> Overview</h2>
+                    <p>During a research internship at <strong>Genentech</strong> (Roche Group, South San Francisco), designed and implemented a Python-based computational imaging pipeline to process multiplexed immunofluorescence (mIF) tissue images. The goal was to automate core preprocessing steps — tissue segmentation, marker intensity normalization, and anatomical compartment classification — enabling reproducible, high-throughput analysis across large image cohorts.</p>
+                    <p>The work directly supported downstream oncology research by delivering clean, classified tissue regions (tumor, stroma, background) as inputs to biomarker quantification and spatial analysis workflows.</p>
+                </div>
+
+                <!-- Screenshot -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-image"></i> Pipeline Output</h2>
+                    <div class="cs-screenshot">
+                        <img src="img/portfolio/gen_img_8.jpg" alt="Genentech imaging pipeline: tissue segmentation, PanCK intensity normalization, and stroma/tumor mask classification" />
+                    </div>
+                    <p class="cs-caption">
+                        <strong>Left:</strong> Otsu-based tissue segmentation overlay comparing thresholding methods on PanCK-stained tissue.
+                        <strong>Center:</strong> 3D surface plot of PanCK pixel intensity across the slide, with outlier trimming cutoff visualized (red = outliers included; green = post-trim).
+                        <strong>Right:</strong> Final three-class tissue compartment mask — Stroma (green), Tumor (red), Background (black).
+                    </p>
+                </div>
+
+                <!-- Pipeline Steps -->
+                <div class="cs-section reveal">
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-sitemap"></i> Pipeline Stages</h2>
+                    <div class="cs-steps">
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">01</div>
+                            <div class="cs-step-body">
+                                <h4>Tissue Segmentation</h4>
+                                <p>Applied Otsu-based thresholding on the PanCK channel to delineate tissue from glass/background. Multiple thresholding strategies were evaluated side-by-side to maximize tissue recall while rejecting background artifacts.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">02</div>
+                            <div class="cs-step-body">
+                                <h4>PanCK Intensity Normalization &amp; Outlier Trimming</h4>
+                                <p>Computed 3D surface distributions of PanCK pixel intensity across the full tissue area. Identified and trimmed high-intensity outlier pixels that skew normalization — shown as the dashed cutoff line in the surface plot. This step ensures downstream marker quantification is not dominated by saturated regions.</p>
+                            </div>
+                        </div>
+
+                        <div class="cs-step">
+                            <div class="cs-step-num">03</div>
+                            <div class="cs-step-body">
+                                <h4>Compartment Classification</h4>
+                                <p>Generated pixel-level tissue masks classifying each region as <strong>Tumor</strong> (PanCK-positive), <strong>Stroma</strong> (tissue-positive, PanCK-negative), or <strong>Background</strong>. These masks feed directly into region-specific biomarker analysis — e.g., computing TIL density within stroma vs. tumor separately.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="cs-sidebar reveal">
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Organization</h5>
+                        <div class="cs-sidebar-org">
+                            <img src="img/logos/genentech.png" alt="Genentech" />
+                            <div>
+                                <strong>Genentech</strong><br>
+                                <span>A Roche Company</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Role</h5>
+                        <p>Research Intern &mdash; Computational Biology</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Focus Area</h5>
+                        <p>Multiplexed immunofluorescence (mIF) image analysis &bull; Oncology biomarker research</p>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Tech Stack</h5>
+                        <div class="cs-stack">
+                            <span>Python</span>
+                            <span>OpenCV</span>
+                            <span>scikit-image</span>
+                            <span>NumPy</span>
+                            <span>Pandas</span>
+                            <span>Matplotlib</span>
+                            <span>Jupyter</span>
+                        </div>
+                    </div>
+
+                    <div class="cs-sidebar-block">
+                        <h5 class="cs-sidebar-heading">Deliverables</h5>
+                        <ul class="cs-sidebar-list">
+                            <li>Tissue segmentation module</li>
+                            <li>Intensity normalization pipeline</li>
+                            <li>3-class compartment classifier</li>
+                            <li>Reproducible Jupyter notebooks</li>
+                            <li>Integration with existing research workflows</li>
+                        </ul>
+                    </div>
+
+                    <a href="/#contact" class="cs-cta-btn">
+                        Build Something Similar <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
