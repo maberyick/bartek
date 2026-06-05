@@ -7,14 +7,22 @@
                 <p class="section-subheading mt-3">
                     Case studies and delivery patterns that show how BARTEK LLC builds and ships clinical AI systems.
                 </p>
+                <div class="portfolio-view-toggle" role="group" aria-label="Portfolio view toggle">
+                    <button type="button" class="portfolio-toggle-btn active" data-portfolio-view="flow">Flow View</button>
+                    <button type="button" class="portfolio-toggle-btn" data-portfolio-view="image">Image View</button>
+                </div>
             </div>
         </div>
-        <div class="row g-4 reveal">
+        <div class="row g-4 reveal portfolio-view-group view-flow">
             <!-- Genentech — real, clickable -->
             <div class="col-lg-4 col-md-6">
                 <div class="portfolio-item portfolio-clickable" data-bs-toggle="modal" data-bs-target="#modal-genentech" role="button" tabindex="0">
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>Ingest</span><span>Segment</span><span>Normalize</span><span>Classify</span>
+                    </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Drop generated workflow image here</p>
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Institutional Contribution</div>
@@ -29,6 +37,10 @@
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>WSI</span><span>Nuclei</span><span>TIL</span><span>Outcome</span>
                     </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Drop generated workflow image here</p>
+                    </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Research Contribution</div>
                         <div class="portfolio-title">Histopathology Pipeline &amp; Publication</div>
@@ -41,6 +53,10 @@
                 <div class="portfolio-item coming-soon">
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>Patch</span><span>Detect</span><span>Quantify</span><span>Report</span>
+                    </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Generated image slot</p>
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
@@ -57,6 +73,10 @@
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>OCT</span><span>QC</span><span>Infer</span><span>Triage</span>
                     </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Generated image slot</p>
+                    </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
                         <div class="portfolio-title">Foundational Model Integration</div>
@@ -72,6 +92,10 @@
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>Signal</span><span>Filter</span><span>Feature</span><span>Flag</span>
                     </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Generated image slot</p>
+                    </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
                         <div class="portfolio-title">ECG Processing and QC Pipeline</div>
@@ -86,6 +110,10 @@
                 <div class="portfolio-item coming-soon">
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>Queue</span><span>Route</span><span>Act</span><span>Audit</span>
+                    </div>
+                    <div class="portfolio-image-visual" aria-hidden="true">
+                        <i class="fa-solid fa-image"></i>
+                        <p>Generated image slot</p>
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
@@ -110,8 +138,16 @@
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-flow-strip" aria-hidden="true">
+                <div class="modal-view-toggle" role="group" aria-label="Genentech modal view toggle">
+                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-genentech" data-modal-view="flow">Flow View</button>
+                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-genentech" data-modal-view="image">Image View</button>
+                </div>
+                <div class="modal-flow-strip" data-modal-visual="flow" aria-hidden="true">
                     <span>Ingest</span><span>Segment</span><span>Normalize</span><span>Classify</span><span>Batch Run</span>
+                </div>
+                <div class="modal-image-strip" data-modal-visual="image" aria-hidden="true">
+                    <i class="fa-solid fa-image"></i>
+                    <p>Generated workflow image area</p>
                 </div>
                 <div class="modal-body">
                     <div class="modal-section">
@@ -156,8 +192,16 @@
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-flow-strip" aria-hidden="true">
+                <div class="modal-view-toggle" role="group" aria-label="Histopathology modal view toggle">
+                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-caswestern" data-modal-view="flow">Flow View</button>
+                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-caswestern" data-modal-view="image">Image View</button>
+                </div>
+                <div class="modal-flow-strip" data-modal-visual="flow" aria-hidden="true">
                     <span>WSI</span><span>Nuclear Detect</span><span>TIL Spatial</span><span>Model</span><span>Validate</span>
+                </div>
+                <div class="modal-image-strip" data-modal-visual="image" aria-hidden="true">
+                    <i class="fa-solid fa-image"></i>
+                    <p>Generated workflow image area</p>
                 </div>
                 <div class="modal-body">
                     <div class="modal-section">

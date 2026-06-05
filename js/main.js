@@ -61,3 +61,34 @@ document.querySelectorAll('[data-bs-toggle="modal"]').forEach(function (trigger)
         bootstrap.Modal.getOrCreateInstance(modalEl).show();
     });
 });
+
+// Portfolio view toggle (flow/image)
+var portfolioViewGroup = document.querySelector('#portfolio .portfolio-view-group');
+var portfolioToggleButtons = document.querySelectorAll('[data-portfolio-view]');
+if (portfolioViewGroup && portfolioToggleButtons.length) {
+    portfolioToggleButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var view = btn.getAttribute('data-portfolio-view');
+            if (!view) return;
+            portfolioViewGroup.classList.remove('view-flow', 'view-image');
+            portfolioViewGroup.classList.add(view === 'image' ? 'view-image' : 'view-flow');
+            portfolioToggleButtons.forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        });
+    });
+}
+
+// Modal view toggle (flow/image)
+document.querySelectorAll('[data-modal-view]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        var targetSel = btn.getAttribute('data-modal-target');
+        var view = btn.getAttribute('data-modal-view');
+        if (!targetSel || !view) return;
+        var modalEl = document.querySelector(targetSel);
+        if (!modalEl) return;
+        modalEl.classList.remove('view-flow', 'view-image');
+        modalEl.classList.add(view === 'image' ? 'view-image' : 'view-flow');
+        modalEl.querySelectorAll('[data-modal-view]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+    });
+});

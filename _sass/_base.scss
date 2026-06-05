@@ -741,6 +741,42 @@ header.hero {
 #portfolio {
     background: $bg-secondary;
 
+    .portfolio-view-toggle {
+        margin: 1rem auto 0;
+        display: inline-flex;
+        border: 1px solid $border;
+        border-radius: 100px;
+        overflow: hidden;
+        background: rgba($bg-card, 0.8);
+    }
+
+    .portfolio-toggle-btn {
+        background: transparent;
+        border: none;
+        color: $text-muted;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 7px 13px;
+        @include transition-all;
+
+        &.active {
+            color: $accent;
+            background: rgba($accent, 0.12);
+        }
+    }
+
+    .portfolio-view-group.view-flow {
+        .portfolio-flow-visual { display: grid; }
+        .portfolio-image-visual { display: none; }
+    }
+
+    .portfolio-view-group.view-image {
+        .portfolio-flow-visual { display: none; }
+        .portfolio-image-visual { display: flex; }
+    }
+
     .portfolio-item {
         position: relative;
         border-radius: var(--radius-lg);
@@ -777,6 +813,34 @@ header.hero {
             }
         }
 
+        .portfolio-image-visual {
+            position: absolute;
+            inset: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            background:
+                radial-gradient(circle at 20% 15%, rgba($accent, 0.22), transparent 55%),
+                radial-gradient(circle at 90% 85%, rgba($accent2, 0.2), transparent 60%),
+                linear-gradient(160deg, darken($bg-card, 2%) 0%, $bg-card 100%);
+
+            i {
+                font-size: 1.35rem;
+                color: $accent;
+            }
+
+            p {
+                font-size: 0.78rem;
+                font-weight: 600;
+                color: $text-muted;
+                margin: 0;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+        }
+
         img {
             width: 100%;
             height: 100%;
@@ -803,7 +867,6 @@ header.hero {
         &:hover {
             border-color: $border-accent;
             .portfolio-overlay { opacity: 1; }
-            img { transform: scale(1.06); }
             .portfolio-flow-visual span {
                 border-color: rgba($accent, 0.45);
             }
@@ -847,6 +910,11 @@ header.hero {
         // Coming soon state
         &.coming-soon {
             .portfolio-flow-visual {
+                filter: blur(1.5px) brightness(0.5);
+                transform: scale(1.02);
+            }
+
+            .portfolio-image-visual {
                 filter: blur(1.5px) brightness(0.5);
                 transform: scale(1.02);
             }
@@ -923,11 +991,37 @@ header.hero {
         }
     }
 
+    .modal-view-toggle {
+        display: inline-flex;
+        border: 1px solid $border;
+        border-radius: 100px;
+        overflow: hidden;
+        margin: 0.9rem 1.75rem 0.8rem;
+        background: rgba($bg-card, 0.8);
+    }
+
+    .modal-toggle-btn {
+        background: transparent;
+        border: none;
+        color: $text-muted;
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 6px 11px;
+
+        &.active {
+            color: $accent;
+            background: rgba($accent, 0.12);
+        }
+    }
+
     .modal-flow-strip {
         display: flex;
         flex-wrap: wrap;
         gap: 0.45rem;
         padding: 0.9rem 1.75rem 0.8rem;
+        border-top: 1px solid $border;
         border-bottom: 1px solid $border;
         background: linear-gradient(160deg, rgba($accent, 0.08), rgba($accent2, 0.06));
 
@@ -942,6 +1036,44 @@ header.hero {
             border-radius: 100px;
             padding: 3px 10px;
         }
+    }
+
+    .modal-image-strip {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 1rem 1.75rem 0.95rem;
+        border-top: 1px solid $border;
+        border-bottom: 1px solid $border;
+        background:
+            radial-gradient(circle at 15% 10%, rgba($accent, 0.18), transparent 50%),
+            radial-gradient(circle at 90% 90%, rgba($accent2, 0.15), transparent 55%),
+            linear-gradient(170deg, darken($bg-card, 1%) 0%, $bg-card 100%);
+
+        i {
+            color: $accent;
+            font-size: 1.15rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: $text-muted;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+    }
+
+    &.view-flow {
+        .modal-flow-strip { display: flex; }
+        .modal-image-strip { display: none; }
+    }
+
+    &.view-image {
+        .modal-flow-strip { display: none; }
+        .modal-image-strip { display: flex; }
     }
 
     .modal-body {
