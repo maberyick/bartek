@@ -56,7 +56,7 @@
             </div>
             <!-- Ophthalmology — coming soon -->
             <div class="col-lg-4 col-md-6">
-                <div class="portfolio-item coming-soon">
+                <div class="portfolio-item portfolio-clickable" data-bs-toggle="modal" data-bs-target="#modal-ophthalmology" role="button" tabindex="0">
                     <div class="portfolio-flow-visual" aria-hidden="true">
                         <span>VisionFM</span><span>MoE Tune</span><span>Layer Seg</span><span>ONNX Deploy</span>
                     </div>
@@ -70,8 +70,8 @@
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
                         <div class="portfolio-title">Retinal Foundation Model Pipeline</div>
-                        <span class="coming-soon-badge">
-                            <i class="fa-solid fa-lock"></i> Coming Soon
+                        <span class="portfolio-view-more">
+                            <i class="fa-solid fa-expand"></i> View Delivery Pattern
                         </span>
                     </div>
                 </div>
@@ -233,6 +233,57 @@
                         <a href="case-study-phenotil.html" class="btn btn-sm btn-accent-outline">Full Case Study <i class="fa-solid fa-arrow-up-right-from-square fa-xs"></i></a>
                         <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ophthalmology Foundation Model -->
+    <div class="modal fade portfolio-modal view-image" id="modal-ophthalmology" tabindex="-1" aria-labelledby="modal-ophthalmology-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <span class="modal-category">Scope: Planned Offering &middot; Ophthalmology AI</span>
+                        <h4 class="modal-title" id="modal-ophthalmology-label">Retinal Foundation Model Pipeline</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-view-toggle" role="group" aria-label="Ophthalmology modal view toggle">
+                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-ophthalmology" data-modal-view="flow">Flow View</button>
+                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-ophthalmology" data-modal-view="image">Image View</button>
+                </div>
+                <div class="modal-flow-strip" data-modal-visual="flow" aria-hidden="true">
+                    <span>B-Scan Ingest</span><span>VisionFM Tune</span><span>MoE</span><span>Layer Seg</span><span>ONNX Container</span>
+                </div>
+                <div class="modal-image-strip" data-modal-visual="image" aria-hidden="true">
+                    <img src="img/portfolio/opthoamology_pipeline_image.png" alt="Generated workflow image for ophthalmology foundation model pipeline" />
+                </div>
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-circle-info"></i> Overview</h6>
+                        <p>Foundation-model pipeline for ophthalmology that continues VisionFM pretraining on 3M+ B-scans, then fine-tunes for retinal layers and pathology-specific segmentation.</p>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-list-check"></i> Planned Workflow</h6>
+                        <ul>
+                            <li>Continue VisionFM pretraining on large-scale retinal B-scan cohorts</li>
+                            <li>Mixture-of-Experts fine-tuning for robust generic segmentation</li>
+                            <li>Layer and lesion segmentation for BM, RPE, INL, fluid, and related structures</li>
+                            <li>Pathology-specific refinement for Plaquenil toxicity, Stargardt, dry AMD, and wet AMD</li>
+                            <li>Export ONNX variants for fast containerized deployment</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h6><i class="fa-solid fa-microchip"></i> Stack</h6>
+                        <div class="modal-stack">
+                            <span>VisionFM</span><span>PyTorch</span><span>Mixture of Experts</span><span>ONNX</span><span>Containers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="modal-org"><i class="fa-solid fa-eye"></i> Ophthalmology pipeline in active design</span>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
