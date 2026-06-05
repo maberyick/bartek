@@ -871,12 +871,49 @@ header.hero {
             text-align: center;
         }
 
+        .portfolio-meta-panel {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 0.7rem 0.8rem 0.75rem;
+            background: linear-gradient(180deg, rgba($bg-primary, 0.04), rgba($bg-primary, 0.92));
+
+            h6 {
+                margin: 0 0 0.45rem;
+                font-size: 0.73rem;
+                line-height: 1.35;
+                color: white;
+                font-weight: 700;
+            }
+        }
+
+        .portfolio-meta-tools {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+
+            span {
+                font-size: 0.62rem;
+                font-weight: 700;
+                color: $accent;
+                border: 1px solid rgba($accent, 0.3);
+                background: rgba($accent, 0.08);
+                border-radius: 999px;
+                padding: 2px 7px;
+                text-transform: uppercase;
+                letter-spacing: 0.07em;
+            }
+        }
+
         &:hover {
             border-color: $border-accent;
             .portfolio-overlay { opacity: 1; }
             .portfolio-flow-visual span {
                 border-color: rgba($accent, 0.45);
             }
+            .portfolio-meta-panel { opacity: 0; }
         }
 
         .portfolio-category {
