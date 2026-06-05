@@ -89,5 +89,58 @@
                 </div>
             </div>
         </div>
+
+        <div class="row text-center mt-5 mb-4">
+            <div class="col-12">
+                <span class="section-label">How impact is measured</span>
+                <h3 class="section-heading mt-2">Measurement Framework</h3>
+                <p class="section-subheading mt-3">
+                    We define baseline metrics first, then report pilot or production changes with transparent assumptions.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4 measurement-framework reveal">
+            <div class="col-lg-3 col-md-6">
+                <div class="measurement-card">
+                    <div class="measurement-head">
+                        <i class="fa-solid fa-stopwatch"></i>
+                        <span>Turnaround Time</span>
+                    </div>
+                    <p>Minutes or hours from case ingestion to model-ready output, compared before and after pipeline changes.</p>
+                    <div class="measurement-foot">Baseline -> Pilot -> Production</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="measurement-card">
+                    <div class="measurement-head">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <span>Throughput</span>
+                    </div>
+                    <p>Cases processed per day or week, including batch runtime and queue behavior under real workload volume.</p>
+                    <div class="measurement-foot">Cases/day or Cases/week</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="measurement-card">
+                    <div class="measurement-head">
+                        <i class="fa-solid fa-square-check"></i>
+                        <span>Quality Signals</span>
+                    </div>
+                    <p>Segmentation/inference consistency, QA pass rate, and exception rates tracked across representative cohorts.</p>
+                    <div class="measurement-foot">QA pass rate + error rate</div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="measurement-card">
+                    <div class="measurement-head">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span>Workload Relief</span>
+                    </div>
+                    <p>Manual steps removed and review effort reduced for pathology teams, with pilot estimates labeled clearly.</p>
+                    <div class="measurement-foot">Manual steps removed</div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
