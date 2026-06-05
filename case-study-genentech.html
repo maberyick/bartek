@@ -39,53 +39,57 @@ description: "Case study: Python-based computational imaging pipeline built duri
                     <p>The workflows were deployed in Genentech&rsquo;s <strong>high-performance computing (HPC)</strong> environment, enabling accurate detection of histologic features across diverse multiplex tissue image types at scale. Multiple data sources were consolidated into unified, research-ready datasets to support downstream biomarker quantification and oncology research.</p>
                 </div>
 
-                <!-- Screenshot -->
+                <!-- Workflow Cards -->
                 <div class="cs-section reveal">
-                    <h2 class="cs-section-heading"><i class="fa-solid fa-image"></i> Pipeline Output</h2>
-                    <div class="cs-screenshot">
-                        <img src="img/portfolio/gen_img_8.jpg" alt="Genentech imaging pipeline: tissue segmentation, PanCK intensity normalization, and stroma/tumor mask classification" />
-                    </div>
-                    <p class="cs-caption">
-                        <strong>Left:</strong> Otsu-based tissue segmentation overlay comparing thresholding methods on PanCK-stained tissue.
-                        <strong>Center:</strong> 3D surface plot of PanCK pixel intensity across the slide, with outlier trimming cutoff visualized (red = outliers included; green = post-trim).
-                        <strong>Right:</strong> Final three-class tissue compartment mask — Stroma (green), Tumor (red), Background (black).
-                    </p>
-                </div>
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-layer-group"></i> Pipeline Stages</h2>
+                    <p class="cs-section-lead">The pipeline reads better as a sequence of cards than as a gallery of figures. Each card captures a stage, the main technique, and the operational outcome.</p>
+                    <div class="cs-workflow-grid">
 
-                <!-- Pipeline Steps -->
-                <div class="cs-section reveal">
-                    <h2 class="cs-section-heading"><i class="fa-solid fa-sitemap"></i> Pipeline Stages</h2>
-                    <div class="cs-steps">
-
-                        <div class="cs-step">
-                            <div class="cs-step-num">01</div>
-                            <div class="cs-step-body">
-                                <h4>Tissue Segmentation</h4>
-                                <p>Applied Otsu-based thresholding on the PanCK channel to delineate tissue regions from glass and background. Multiple thresholding strategies were evaluated side-by-side to maximize tissue recall across diverse multiplex image types.</p>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">01</span>
+                                <span class="cs-workflow-chip">Preprocessing</span>
+                            </div>
+                            <h4>Image Ingestion &amp; Cleanup</h4>
+                            <p>Standardized multiplex IF inputs, reconciled source differences, and prepared images for downstream analysis.</p>
+                            <div class="cs-workflow-tags">
+                                <span>Python</span><span>ETL</span><span>Data QA</span>
                             </div>
                         </div>
 
-                        <div class="cs-step">
-                            <div class="cs-step-num">02</div>
-                            <div class="cs-step-body">
-                                <h4>ETL &amp; Multi-Source Data Integration</h4>
-                                <p>Designed ETL patterns to ingest immunofluorescence imaging data from multiple sources and consolidate it into unified, research-ready datasets. This standardized formats, resolved cross-source inconsistencies, and eliminated manual preparation steps &mdash; a core driver of the ~30% efficiency gain.</p>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">02</span>
+                                <span class="cs-workflow-chip">Segmentation</span>
+                            </div>
+                            <h4>Tissue Boundary Detection</h4>
+                            <p>Applied Otsu-based thresholding on the PanCK channel to isolate tissue from glass and background across varied image types.</p>
+                            <div class="cs-workflow-tags">
+                                <span>OpenCV</span><span>scikit-image</span><span>Thresholding</span>
                             </div>
                         </div>
 
-                        <div class="cs-step">
-                            <div class="cs-step-num">03</div>
-                            <div class="cs-step-body">
-                                <h4>PanCK Intensity Normalization &amp; Outlier Trimming</h4>
-                                <p>Computed 3D surface distributions of PanCK pixel intensity across the full tissue area. Identified and trimmed high-intensity outlier pixels (dashed cutoff in the surface plot) to ensure downstream marker quantification is not dominated by saturated regions.</p>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">03</span>
+                                <span class="cs-workflow-chip">Normalization</span>
+                            </div>
+                            <h4>Marker Intensity Calibration</h4>
+                            <p>Computed PanCK intensity distributions, trimmed outliers, and normalized signal so downstream quantification stayed stable.</p>
+                            <div class="cs-workflow-tags">
+                                <span>NumPy</span><span>Pandas</span><span>Visualization</span>
                             </div>
                         </div>
 
-                        <div class="cs-step">
-                            <div class="cs-step-num">04</div>
-                            <div class="cs-step-body">
-                                <h4>Compartment Classification &amp; HPC Deployment</h4>
-                                <p>Generated pixel-level tissue masks classifying each region as <strong>Tumor</strong> (PanCK-positive), <strong>Stroma</strong> (tissue-positive, PanCK-negative), or <strong>Background</strong>. The full pipeline was deployed on Genentech&rsquo;s HPC cluster, enabling batch processing of large image cohorts for the Research Pathology team.</p>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">04</span>
+                                <span class="cs-workflow-chip">Deployment</span>
+                            </div>
+                            <h4>Compartment Classification &amp; HPC</h4>
+                            <p>Generated Tumor, Stroma, and Background masks, then deployed the full pipeline on HPC for batch-scale research use.</p>
+                            <div class="cs-workflow-tags">
+                                <span>HPC</span><span>Batch Processing</span><span>Research Pathology</span>
                             </div>
                         </div>
 
