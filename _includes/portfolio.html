@@ -8,12 +8,12 @@
                     Case studies and delivery patterns that show how BARTEK LLC builds and ships clinical AI systems.
                 </p>
                 <div class="portfolio-view-toggle" role="group" aria-label="Portfolio view toggle">
-                    <button type="button" class="portfolio-toggle-btn active" data-portfolio-view="flow">Flow View</button>
-                    <button type="button" class="portfolio-toggle-btn" data-portfolio-view="image">Image View</button>
+                    <button type="button" class="portfolio-toggle-btn" data-portfolio-view="flow">Flow View</button>
+                    <button type="button" class="portfolio-toggle-btn active" data-portfolio-view="image">Image View</button>
                 </div>
             </div>
         </div>
-        <div class="row g-4 reveal portfolio-view-group view-flow">
+        <div class="row g-4 reveal portfolio-view-group view-image">
             <!-- Genentech — real, clickable -->
             <div class="col-lg-4 col-md-6">
                 <div class="portfolio-item portfolio-clickable" data-bs-toggle="modal" data-bs-target="#modal-genentech" role="button" tabindex="0">
@@ -46,36 +46,18 @@
                     </div>
                 </div>
             </div>
-            <!-- AI in Histopathology — coming soon -->
-            <div class="col-lg-4 col-md-6">
-                <div class="portfolio-item coming-soon">
-                    <div class="portfolio-flow-visual" aria-hidden="true">
-                        <span>Patch</span><span>Detect</span><span>Quantify</span><span>Report</span>
-                    </div>
-                    <div class="portfolio-image-visual" aria-hidden="true">
-                        <img src="img/portfolio/histopathology_pipeline_image.png" alt="Generated workflow image for tissue analysis and TIL quantification" />
-                    </div>
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-category">Scope: Planned Offering</div>
-                        <div class="portfolio-title">Tissue Analysis &amp; TIL Quantification</div>
-                        <span class="coming-soon-badge">
-                            <i class="fa-solid fa-lock"></i> Coming Soon
-                        </span>
-                    </div>
-                </div>
-            </div>
             <!-- Ophthalmology — coming soon -->
             <div class="col-lg-4 col-md-6">
                 <div class="portfolio-item coming-soon">
                     <div class="portfolio-flow-visual" aria-hidden="true">
-                        <span>OCT</span><span>QC</span><span>Infer</span><span>Triage</span>
+                        <span>VisionFM</span><span>MoE Tune</span><span>Layer Seg</span><span>ONNX Deploy</span>
                     </div>
                     <div class="portfolio-image-visual" aria-hidden="true">
                         <img src="img/portfolio/opthoamology_pipeline_image.png" alt="Generated workflow image for ophthalmology pipeline" />
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
-                        <div class="portfolio-title">Foundational Model Integration</div>
+                        <div class="portfolio-title">Retinal Foundation Model Pipeline</div>
                         <span class="coming-soon-badge">
                             <i class="fa-solid fa-lock"></i> Coming Soon
                         </span>
@@ -86,7 +68,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="portfolio-item coming-soon">
                     <div class="portfolio-flow-visual" aria-hidden="true">
-                        <span>Signal</span><span>Filter</span><span>Feature</span><span>Flag</span>
+                        <span>Wearable Read</span><span>LDA Split</span><span>Maternal/Fetal</span><span>UI Monitor</span>
                     </div>
                     <div class="portfolio-image-visual" aria-hidden="true">
                         <i class="fa-solid fa-image"></i>
@@ -94,7 +76,7 @@
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
-                        <div class="portfolio-title">ECG Processing and QC Pipeline</div>
+                        <div class="portfolio-title">Maternal-Fetal ECG Separation Demo</div>
                         <span class="coming-soon-badge">
                             <i class="fa-solid fa-lock"></i> Coming Soon
                         </span>
@@ -105,7 +87,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="portfolio-item coming-soon">
                     <div class="portfolio-flow-visual" aria-hidden="true">
-                        <span>Queue</span><span>Route</span><span>Act</span><span>Audit</span>
+                        <span>Podman</span><span>Airflow</span><span>Postgres</span><span>15 PCs</span>
                     </div>
                     <div class="portfolio-image-visual" aria-hidden="true">
                         <i class="fa-solid fa-image"></i>
@@ -113,7 +95,7 @@
                     </div>
                     <div class="portfolio-overlay">
                         <div class="portfolio-category">Scope: Planned Offering</div>
-                        <div class="portfolio-title">Orchestrated AI Operations</div>
+                        <div class="portfolio-title">Orchestrated Ophthalmology Operations</div>
                         <span class="coming-soon-badge">
                             <i class="fa-solid fa-lock"></i> Coming Soon
                         </span>
@@ -124,7 +106,7 @@
     </div>
 
     <!-- Modal: Genentech -->
-    <div class="modal fade portfolio-modal" id="modal-genentech" tabindex="-1" aria-labelledby="modal-genentech-label" aria-hidden="true">
+    <div class="modal fade portfolio-modal view-image" id="modal-genentech" tabindex="-1" aria-labelledby="modal-genentech-label" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -135,8 +117,8 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-view-toggle" role="group" aria-label="Genentech modal view toggle">
-                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-genentech" data-modal-view="flow">Flow View</button>
-                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-genentech" data-modal-view="image">Image View</button>
+                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-genentech" data-modal-view="flow">Flow View</button>
+                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-genentech" data-modal-view="image">Image View</button>
                 </div>
                 <div class="modal-flow-strip" data-modal-visual="flow" aria-hidden="true">
                     <span>Ingest</span><span>Segment</span><span>Normalize</span><span>Classify</span><span>Batch Run</span>
@@ -177,7 +159,7 @@
     </div>
 
     <!-- Modal: Case Western / Emory / GT -->
-    <div class="modal fade portfolio-modal" id="modal-caswestern" tabindex="-1" aria-labelledby="modal-caswestern-label" aria-hidden="true">
+    <div class="modal fade portfolio-modal view-image" id="modal-caswestern" tabindex="-1" aria-labelledby="modal-caswestern-label" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -188,8 +170,8 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-view-toggle" role="group" aria-label="Histopathology modal view toggle">
-                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-caswestern" data-modal-view="flow">Flow View</button>
-                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-caswestern" data-modal-view="image">Image View</button>
+                    <button type="button" class="modal-toggle-btn" data-modal-target="#modal-caswestern" data-modal-view="flow">Flow View</button>
+                    <button type="button" class="modal-toggle-btn active" data-modal-target="#modal-caswestern" data-modal-view="image">Image View</button>
                 </div>
                 <div class="modal-flow-strip" data-modal-visual="flow" aria-hidden="true">
                     <span>WSI</span><span>Nuclear Detect</span><span>TIL Spatial</span><span>Model</span><span>Validate</span>
