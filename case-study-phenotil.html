@@ -39,20 +39,48 @@ description: "Case study: Deep computational image analysis of immune cell niche
                     <p>The work produced <strong>data models and visualizations for 4,000+ histopathology images</strong>, scalable deep learning pipelines running on HPC and cloud resources, and machine learning models predicting patient outcomes and immunotherapy response &mdash; resulting in multiple peer-reviewed publications in <em>Nature</em>, <em>Science Advances</em>, and <em>The Lancet</em>, and three US patents.</p>
                 </div>
 
-                <!-- Screenshot 1 -->
+                <!-- Workflow Flashcards 1 -->
                 <div class="cs-section reveal">
-                    <h2 class="cs-section-heading"><i class="fa-solid fa-image"></i> Pipeline Overview &mdash; HistoTIL</h2>
-                    <div class="cs-screenshot">
-                        <img src="img/portfolio/histotil_img_3.jpg" alt="HistoTIL pipeline: WSI ingestion, cell detection, feature extraction, prognostic and predictive modeling" />
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-layer-group"></i> HistoTIL Workflow</h2>
+                    <p class="cs-section-lead">A flashcard view of the HistoTIL sequence from whole-slide inputs to predictive outputs.</p>
+                    <div class="cs-workflow-grid">
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">01</span>
+                                <span class="cs-workflow-chip">Ingestion</span>
+                            </div>
+                            <h4>WSI Digitization &amp; Tiling</h4>
+                            <p>Gigapixel H&amp;E slides are ingested and tiled into GPU-ready patches after tissue-background filtering.</p>
+                            <div class="cs-workflow-tags"><span>OpenSlide</span><span>Patching</span><span>GPU</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">02</span>
+                                <span class="cs-workflow-chip">Detection</span>
+                            </div>
+                            <h4>Nuclear Detection &amp; TIL Labeling</h4>
+                            <p>Deep learning identifies nuclei and classifies TIL candidates from morphology in H&amp;E without extra staining.</p>
+                            <div class="cs-workflow-tags"><span>PyTorch</span><span>Nuclei</span><span>TIL</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">03</span>
+                                <span class="cs-workflow-chip">Spatial</span>
+                            </div>
+                            <h4>Immune Niche Features</h4>
+                            <p>Cell coordinates are converted to density, proximity, and clustering features describing immune architecture.</p>
+                            <div class="cs-workflow-tags"><span>Feature Eng</span><span>Spatial Stats</span><span>PhenoTIL</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">04</span>
+                                <span class="cs-workflow-chip">Modeling</span>
+                            </div>
+                            <h4>Outcome Prediction &amp; Validation</h4>
+                            <p>Models predict survival and ICI response, then are validated across multiple cohorts and institutions.</p>
+                            <div class="cs-workflow-tags"><span>scikit-learn</span><span>Validation</span><span>Cohorts</span></div>
+                        </div>
                     </div>
-                    <p class="cs-caption">
-                        <strong>(A)</strong> Primary tumor biopsy digitized to a WSI at 83,712&times;65,024 px.
-                        <strong>(B)</strong> Patch tiling (2048&times;2048 px) for GPU-accelerated processing.
-                        <strong>(C)</strong> Per-patch cell detection: lymphocytes (blue) vs. non-lymphocytes (red).
-                        <strong>(D)</strong> Spatial feature extraction: cell XY positions, density heatmaps, and immune clustering.
-                        <strong>(E)</strong> ICI outcome prediction for pembrolizumab, nivolumab, and atezolizumab.
-                        <strong>(F)</strong> Validated on 226 patients (88 responders / 138 non-responders) across 5 cohorts.
-                    </p>
                 </div>
 
                 <!-- Pipeline Steps -->
@@ -103,15 +131,48 @@ description: "Case study: Deep computational image analysis of immune cell niche
                     </div>
                 </div>
 
-                <!-- Screenshot 2 -->
+                <!-- Workflow Flashcards 2 -->
                 <div class="cs-section reveal">
-                    <h2 class="cs-section-heading"><i class="fa-solid fa-chart-bar"></i> PhenoTIL &mdash; Immune Niche Pipeline</h2>
-                    <div class="cs-screenshot">
-                        <img src="img/portfolio/phenotil_img_1.jpg" alt="PhenoTIL pipeline: tissue preparation, image processing, cell identification, feature extraction, clustering, molecular assessment" />
+                    <h2 class="cs-section-heading"><i class="fa-solid fa-chart-bar"></i> PhenoTIL Immune-Niche Flow</h2>
+                    <p class="cs-section-lead">The PhenoTIL layer transforms base detections into clinically relevant immune niche signatures.</p>
+                    <div class="cs-workflow-grid">
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">A</span>
+                                <span class="cs-workflow-chip">Prep</span>
+                            </div>
+                            <h4>Preprocess Tissue Regions</h4>
+                            <p>Standardize slide inputs and isolate tissue regions for consistent downstream cell analytics.</p>
+                            <div class="cs-workflow-tags"><span>QC</span><span>Normalization</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">B</span>
+                                <span class="cs-workflow-chip">Extract</span>
+                            </div>
+                            <h4>Build Spatial Phenotypes</h4>
+                            <p>Generate neighborhood and clustering descriptors that represent immune microenvironments.</p>
+                            <div class="cs-workflow-tags"><span>Spatial Features</span><span>Niches</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">C</span>
+                                <span class="cs-workflow-chip">Integrate</span>
+                            </div>
+                            <h4>Link Features to Outcomes</h4>
+                            <p>Combine image-derived signatures with clinical endpoints for prognostic and predictive modeling.</p>
+                            <div class="cs-workflow-tags"><span>Multi-modal</span><span>Clinical Data</span></div>
+                        </div>
+                        <div class="cs-workflow-card">
+                            <div class="cs-workflow-topline">
+                                <span class="cs-workflow-num">D</span>
+                                <span class="cs-workflow-chip">Report</span>
+                            </div>
+                            <h4>Publish and Reproduce</h4>
+                            <p>Produce publication-ready analyses and reproducible pipeline outputs for cross-site evaluation.</p>
+                            <div class="cs-workflow-tags"><span>Publications</span><span>Reproducibility</span></div>
+                        </div>
                     </div>
-                    <p class="cs-caption">
-                        The PhenoTIL pipeline from tissue preparation through molecular assessment: image preprocessing, cell identification, spatial feature extraction, immune niche clustering, and multi-modal integration with clinical outcome data.
-                    </p>
                 </div>
 
                 <!-- Publications -->

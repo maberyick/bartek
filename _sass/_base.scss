@@ -750,6 +750,33 @@ header.hero {
         aspect-ratio: 16 / 10;
         @include transition-all;
 
+        .portfolio-flow-visual {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.7rem;
+            padding: 1rem;
+            background:
+                radial-gradient(ellipse at 15% 10%, rgba($accent, 0.2), transparent 52%),
+                radial-gradient(ellipse at 92% 90%, rgba($accent2, 0.18), transparent 56%),
+                linear-gradient(165deg, darken($bg-card, 2%) 0%, $bg-card 100%);
+
+            span {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.74rem;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: white;
+                border-radius: 10px;
+                border: 1px solid rgba($accent, 0.22);
+                background: rgba($bg-primary, 0.42);
+            }
+        }
+
         img {
             width: 100%;
             height: 100%;
@@ -777,6 +804,9 @@ header.hero {
             border-color: $border-accent;
             .portfolio-overlay { opacity: 1; }
             img { transform: scale(1.06); }
+            .portfolio-flow-visual span {
+                border-color: rgba($accent, 0.45);
+            }
         }
 
         .portfolio-category {
@@ -816,9 +846,9 @@ header.hero {
 
         // Coming soon state
         &.coming-soon {
-            img {
-                filter: blur(8px) brightness(0.35);
-                transform: scale(1.05);
+            .portfolio-flow-visual {
+                filter: blur(1.5px) brightness(0.5);
+                transform: scale(1.02);
             }
 
             .portfolio-overlay {
@@ -890,6 +920,27 @@ header.hero {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+    }
+
+    .modal-flow-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        padding: 0.9rem 1.75rem 0.8rem;
+        border-bottom: 1px solid $border;
+        background: linear-gradient(160deg, rgba($accent, 0.08), rgba($accent2, 0.06));
+
+        span {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: $accent;
+            border: 1px solid rgba($accent, 0.2);
+            background: rgba($bg-primary, 0.5);
+            border-radius: 100px;
+            padding: 3px 10px;
         }
     }
 
