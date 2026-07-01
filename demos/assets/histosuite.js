@@ -229,6 +229,32 @@ setInterval(()=>{
   if(ch&&view==='active')render();
 },1200);
 
+// ---- onboarding ----
+function welcome(){
+  const m=document.createElement('div'); m.className='modal-bk open'; m.id='hs-welcome';
+  m.innerHTML=`<div class="modal-card" style="max-width:520px;text-align:center">
+    <div style="font-size:34px;margin-bottom:4px">🔬</div>
+    <div class="modal-head" style="justify-content:center;margin-bottom:8px">Welcome to&nbsp;<b>HistoSuite</b></div>
+    <p class="sub" style="margin:0 0 4px">An AI-orchestrated whole-slide pathology pipeline. Tell the assistant what you want to learn — it plans and runs the whole thing, then shows each patient's risk.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+      <button class="btn" id="w-run"><i class="fa-solid fa-bolt"></i> Run a sample pipeline</button>
+      <button class="btn g" id="w-talk"><i class="fa-solid fa-wand-magic-sparkles"></i> I'll talk to the assistant</button>
+    </div>
+    <p class="sub" style="margin-top:14px;font-size:12px">Synthetic demo — nothing is really processed. Navigate freely from the sidebar anytime.</p></div>`;
+  document.body.appendChild(m);
+  m.onclick=e=>{if(e.target===m)m.remove();};
+  document.getElementById('w-talk').onclick=()=>{m.remove();const o=document.getElementById('obj');if(o)o.focus();};
+  document.getElementById('w-run').onclick=()=>{m.remove();runSample();};
+}
+function runSample(){
+  setView('new');
+  const o=document.getElementById('obj'); if(o) o.value=EXAMPLES[0];
+  askAssistant();
+  const iv=setInterval(()=>{ if(!streaming){clearInterval(iv); startBatch();} }, 250);
+}
+
 window.HS={go:setView,open:id=>openInspector(runs.find(r=>r.slide===id)),close:closeInspector};
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>setView(a.dataset.v)); // wire the sidebar (was missing)
 render();
+welcome();
 })();
