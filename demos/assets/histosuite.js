@@ -81,33 +81,25 @@ function activeView(){
   const cards=[['Slides in batch',runs.length,'#cfe0f5'],['Processing',proc,'#fbbf24'],['Completed',done,'#34d399'],['Flagged',rev,'#f87171']];
   return `<div class="h1">Active runs</div><div class="sub">Live — refreshes every 5s. Airflow fans out per-slide, per-stage tasks.</div>
   <div class="stats">${cards.map(c=>`<div class="stat"><div class="n" style="color:${c[2]}">${c[1]}</div><div class="l">${c[0]}</div></div>`).join('')}</div>
-  ${runs.length?runs.map(r=>`<div class="runrow"><div class="top"><b>${r.slide}</b> · ${r.tissue}
+  ${runs.length?runs.map(r=>{const done=r.status==='complete'||r.status==='review';
+    return `<div class="runrow" ${done?`onclick="HS.open('${r.slide}')" style="cursor:pointer"`:''}><div class="top"><b>${r.slide}</b> · ${r.tissue}
     <span class="pill ${r.status[0]}">${r.status}</span>
     <span style="margin-left:auto;color:#8fa2bd;font-size:12px">${r.model}</span></div>
-    ${timeline(r.stageIdx,r.status==='complete'||r.status==='review')}
-    <div style="color:#8fa2bd;font-size:12px">${r.status==='complete'||r.status==='review'?`prognosis: <b style="color:#cfe0f5">${r.prognosis}</b> · ${r.patches} patches`:`stage ${Math.min(r.stageIdx+1,6)}/6 · ${r.prog}%`}</div>
-  </div>`).join(''):`<div class="card sub">No active runs. Go to <a onclick="HS.go('new')">Start New Run</a>.</div>`}`;
+    ${timeline(r.stageIdx,done)}
+    <div style="color:#8fa2bd;font-size:12px">${done?`risk: <b style="color:${RCOL(r.bucket)}">${r.bucket}</b> · ${r.patches} patches · <span style="color:#22d3ee">open inspector →</span>`:`stage ${Math.min(r.stageIdx+1,6)}/6 · ${r.prog}%`}</div>
+  </div>`;}).join(''):`<div class="card sub">No active runs. Go to <a onclick="HS.go('new')">Start New Run</a>.</div>`}`;
 }
 
 function reportsView(){
   const done=runs.filter(r=>r.status==='complete'||r.status==='review');
-  if(!sel&&done.length)sel=done[0];
-  return `<div class="h1">Reports</div><div class="sub">Completed runs and QC. Click a run to view its result.</div>
-  <div class="row"><div style="flex:0 0 260px">
-    ${done.length?done.map(r=>`<div class="runrow ${r===sel?'sel':''}" onclick="HS.pick('${r.slide}')"><div class="top"><b>${r.slide}</b>
-      <span class="pill ${r.status[0]}">${r.status}</span></div>
-      <div style="color:#8fa2bd;font-size:12px">${r.prognosis} · IoU ${r.iou}</div></div>`).join(''):'<div class="card sub">No completed runs yet.</div>'}
-  </div>
-  <div style="flex:1;min-width:320px">${sel?`<div class="card"><h3>${sel.slide} · ${sel.tissue} · ${sel.model}</h3>
-    <div class="viewer"><div><div class="canvas" id="cv">${window.BK.pathoImage(overlay)}</div>
-      <div class="tog"><button id="ov1" class="${overlay?'on':''}">Overlay</button><button id="ov0" class="${overlay?'':'on'}">Raw H&E</button></div></div>
-      <div><div class="metric"><span>Prognosis</span><b>${sel.prognosis}</b></div>
-        <div class="metric"><span>Tumor region (IoU)</span><b>${sel.iou}</b></div>
-        <div class="metric"><span>Patches</span><b>${sel.patches}</b></div>
-        <div class="metric"><span>Runtime</span><b>${sel.runtime}s</b></div>
-        <div class="metric"><span>QC</span><b style="color:#34d399">passed</b></div>
-        <div style="margin-top:12px"><button class="btn g" style="width:100%"><i class="fa-solid fa-file-pdf"></i> Download report</button></div>
-      </div></div></div>`:''}</div></div>`;
+  return `<div class="h1">Reports</div><div class="sub">Completed runs with patient risk. Click any card to open the inspector.</div>
+  ${done.length?`<div class="repgrid">${done.map(r=>{const col=RCOL(r.bucket);
+    return `<div class="repcard" onclick="HS.open('${r.slide}')"><div class="top"><b>${r.slide}</b> · ${r.tissue}
+      <span class="pill ${r.status[0]}" style="margin-left:auto">${r.status}</span></div>
+      <div class="riskbadge" style="border-color:${col};color:${col}">${r.bucket.toUpperCase()} RISK · ${r.risk.toFixed(2)}</div>
+      <div class="sub" style="margin:8px 0 0">5-yr survival <b style="color:#cfe0f5">${r.survival}%</b> · response <b style="color:#cfe0f5">${r.response}%</b></div>
+      <div style="margin-top:8px;color:#22d3ee;font-size:12px"><i class="fa-solid fa-magnifying-glass-chart"></i> Open inspector →</div></div>`;
+  }).join('')}</div>`:'<div class="card sub">No completed runs yet. Start a batch from <a onclick="HS.go(\'new\')">New Run</a>.</div>'}`;
 }
 
 function settingsView(){
@@ -166,11 +158,64 @@ function showPlanSteps(){
 // ---- run the batch ----
 function startBatch(){
   const slides=selectedSlides(); if(!slides.length)return;
-  runs = slides.map(s=>({slide:s.id,tissue:s.tissue,model:(plan&&plan.model)||'Virchow2-FM',
-    stageIdx:0,prog:0,status:'queued', prognosis:pick(['low','intermediate','high'])+' ('+R(0.1,0.9).toFixed(2)+')',
-    iou:R(0.86,0.94).toFixed(3),patches:RI(1800,4200),runtime:RI(70,140), pathology:Math.random()<0.4}));
+  runs = slides.map(s=>{
+    const risk=R(0.12,0.9), bucket=risk<0.33?'low':risk>0.67?'high':'intermediate';
+    const surv=Math.max(28,Math.min(96,Math.round(94-risk*62+R(-4,4))));
+    const resp=Math.max(8,Math.min(96,Math.round((1-risk)*100*R(0.75,1.02))));
+    return {slide:s.id,tissue:s.tissue,model:(plan&&plan.model)||'Virchow2-FM',
+      stageIdx:0,prog:0,status:'queued', risk,bucket, prognosis:bucket+' ('+risk.toFixed(2)+')',
+      survival:surv, response:resp, respLabel: resp>=60?'Likely responder':resp>=35?'Uncertain':'Unlikely responder',
+      iou:R(0.86,0.94).toFixed(3),patches:RI(1800,4200),runtime:RI(70,140), pathology:Math.random()<0.4};
+  });
   setView('active');
 }
+const RCOL=b=>b==='high'?'#f87171':b==='intermediate'?'#fbbf24':'#34d399';
+function gauge(score,bucket){
+  const W=180,H=104,cx=90,cy=94,r=74,col=RCOL(bucket);
+  const pt=f=>[cx+Math.cos(Math.PI*(1-f))*r, cy-Math.sin(Math.PI*(1-f))*r];
+  const arc=(a,b,c)=>{const[x1,y1]=pt(a),[x2,y2]=pt(b);return `<path d="M${x1.toFixed(1)} ${y1.toFixed(1)} A${r} ${r} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="${c}" stroke-width="11" stroke-linecap="round"/>`;};
+  const[px,py]=pt(score);
+  return `<svg viewBox="0 0 ${W} ${H}" width="176">${arc(0,0.33,'#34d399')}${arc(0.34,0.66,'#fbbf24')}${arc(0.67,1,'#f87171')}
+    <circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="8" fill="#0b1220" stroke="${col}" stroke-width="4"/>
+    <text x="${cx}" y="${cy-16}" text-anchor="middle" fill="#fff" font-size="26" font-weight="800">${score.toFixed(2)}</text>
+    <text x="${cx}" y="${cy}" text-anchor="middle" fill="${col}" font-size="12" font-weight="800">${bucket.toUpperCase()} RISK</text></svg>`;
+}
+function survivalCurve(surv){
+  const W=124,H=40,n=10,pts=[];
+  for(let i=0;i<=n;i++){const t=i/n,s=100-(100-surv)*Math.pow(t,0.75);pts.push([5+t*(W-10),H-5-(s/100)*(H-10)]);}
+  return `<svg viewBox="0 0 ${W} ${H}" width="118" style="margin-top:5px"><polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="#8fa2bd" stroke-width="2"/></svg>`;
+}
+function riskCard(r){const col=RCOL(r.bucket);
+  return `<div class="riskcard"><div class="rc-head"><i class="fa-solid fa-heart-pulse" style="color:${col}"></i> Patient risk — recurrence · survival · therapy response</div>
+   <div class="rc-body">${gauge(r.risk,r.bucket)}
+     <div class="rc-stats">
+       <div class="rc-tile"><div class="t">ProgPath risk</div><div class="v" style="color:${col}">${r.bucket}</div><div class="s">score ${r.risk.toFixed(2)}</div></div>
+       <div class="rc-tile"><div class="t">Est. 5-yr survival</div><div class="v">${r.survival}%</div>${survivalCurve(r.survival)}</div>
+       <div class="rc-tile"><div class="t">Therapy response</div><div class="v" style="color:${col}">${r.response}%</div><div class="s">${r.respLabel}</div></div>
+     </div></div>
+   <div class="rc-note">Synthetic prediction for demo. In production, ProgPath aggregates Virchow2 patch features into a calibrated risk score with survival &amp; response estimates.</div></div>`;
+}
+function openInspector(r){ if(!r)return;
+  let m=document.getElementById('hs-modal'); if(!m){m=document.createElement('div');m.id='hs-modal';m.className='modal-bk';document.body.appendChild(m);m.onclick=e=>{if(e.target===m)closeInspector();};}
+  m.innerHTML=`<div class="modal-card"><button class="modal-x" onclick="HS.close()">&times;</button>
+    <div class="modal-head"><i class="fa-solid fa-magnifying-glass-chart" style="color:#22d3ee"></i> <b>${r.slide}</b> · ${r.tissue} · ${r.model} <span class="pill ${r.status[0]}">${r.status}</span></div>
+    ${riskCard(r)}
+    <div class="viewer" style="margin-top:14px">
+      <div><div class="canvas" id="cv2">${window.BK.pathoImage(true)}</div>
+        <div class="tog"><button id="mo1" class="on">Tumor overlay</button><button id="mo0">Raw H&amp;E</button></div></div>
+      <div><div class="metric"><span>Tumor region (IoU)</span><b>${r.iou}</b></div>
+        <div class="metric"><span>Patches</span><b>${r.patches}</b></div>
+        <div class="metric"><span>Runtime</span><b>${r.runtime}s</b></div>
+        <div class="metric"><span>QC (HistoQC)</span><b style="color:#34d399">passed</b></div>
+        <div class="metric"><span>Feature model</span><b>${r.model}</b></div>
+        <div style="margin-top:12px"><button class="btn" style="width:100%"><i class="fa-solid fa-file-pdf"></i> Download report</button></div></div>
+    </div></div>`;
+  m.classList.add('open');
+  const o1=document.getElementById('mo1'),o0=document.getElementById('mo0');
+  o1.onclick=()=>{document.getElementById('cv2').innerHTML=window.BK.pathoImage(true);o1.classList.add('on');o0.classList.remove('on');};
+  o0.onclick=()=>{document.getElementById('cv2').innerHTML=window.BK.pathoImage(false);o0.classList.add('on');o1.classList.remove('on');};
+}
+function closeInspector(){const m=document.getElementById('hs-modal');if(m)m.classList.remove('open');}
 setInterval(()=>{
   let ch=false;
   runs.forEach(r=>{
@@ -184,6 +229,6 @@ setInterval(()=>{
   if(ch&&view==='active')render();
 },1200);
 
-window.HS={go:setView,pick:id=>{sel=runs.find(r=>r.slide===id);render();}};
+window.HS={go:setView,open:id=>openInspector(runs.find(r=>r.slide===id)),close:closeInspector};
 render();
 })();
