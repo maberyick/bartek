@@ -1,5 +1,32 @@
 /* HistoSuite demo app — synthetic data only, nothing is really processed. */
 (function(){
+// Inject interactive-critical CSS from JS so the modal/risk card render even if a
+// stale pathology.html is cached (keeps JS + styles in sync).
+(function injectCSS(){
+  const css=`
+  .modal-bk{position:fixed;inset:0;background:rgba(4,10,20,.72);display:none;align-items:flex-start;justify-content:center;padding:30px 16px;overflow:auto;z-index:9999}
+  .modal-bk.open{display:flex}
+  .modal-card{background:#111c2e;border:1px solid #24344e;border-radius:16px;padding:20px;max-width:820px;width:100%;position:relative;color:#e7eef7}
+  .modal-x{position:absolute;top:12px;right:14px;background:#1b2a42;border:0;color:#cfe0f5;width:30px;height:30px;border-radius:8px;font-size:18px;cursor:pointer}
+  .modal-head{font-size:16px;display:flex;align-items:center;gap:10px;margin-bottom:14px}.modal-head b{color:#fff}
+  .riskcard{background:linear-gradient(180deg,#0e1b2c,#0c1626);border:1px solid #1c3350;border-radius:14px;padding:16px}
+  .rc-head{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:#8fa2bd;margin-bottom:10px}
+  .rc-body{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .rc-stats{display:flex;gap:14px;flex-wrap:wrap;flex:1}
+  .rc-tile{background:#0c1626;border:1px solid #24344e;border-radius:11px;padding:10px 14px;min-width:120px}
+  .rc-tile .t{font-size:11px;color:#8fa2bd;text-transform:uppercase}.rc-tile .v{font-size:24px;font-weight:800;color:#fff;line-height:1.1;margin-top:2px}.rc-tile .s{font-size:11.5px;color:#8fa2bd}
+  .rc-note{font-size:11.5px;color:#8fa2bd;margin-top:12px;border-top:1px solid #16243a;padding-top:8px}
+  .repgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+  .repcard{background:#0e1a2b;border:1px solid #24344e;border-radius:12px;padding:13px;cursor:pointer}.repcard:hover{border-color:#22d3ee}
+  .repcard .top{display:flex;align-items:center;gap:8px;font-size:13.5px}
+  .riskbadge{display:inline-block;margin-top:8px;border:1px solid #24344e;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:800}
+  .viewer{display:grid;grid-template-columns:1fr 220px;gap:14px}@media(max-width:640px){.viewer{grid-template-columns:1fr}}
+  .canvas{background:#050a12;border-radius:10px;overflow:hidden}.canvas svg{display:block;width:100%}
+  .metric{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #16243a}.metric b{color:#fff}
+  .tog{display:flex;gap:8px;margin-top:8px}.tog button{flex:1;font-size:12px;padding:6px;border:1px solid #24344e;background:#0c1626;color:#b7c6dc;border-radius:7px;cursor:pointer}.tog button.on{background:#22d3ee;color:#04121f;border-color:#22d3ee}
+  .backbtn{display:block;text-align:center;background:#132339;border:1px solid #24344e;color:#cfe0f5;border-radius:9px;padding:9px;margin-bottom:12px;cursor:pointer;font-size:13px;font-weight:600}.backbtn:hover{border-color:#22d3ee;color:#fff}`;
+  const s=document.createElement('style'); s.textContent=css; document.head.appendChild(s);
+})();
 const $=s=>document.querySelector(s), main=()=>document.getElementById('main');
 const R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(R(a,b+1)),pick=a=>a[RI(0,a.length-1)];
 const esc=s=>String(s).replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
