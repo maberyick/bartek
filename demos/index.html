@@ -1,31 +1,69 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Interactive Demos | BARTEK LLC</title>
-<link rel="stylesheet" href="assets/demo.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head><body class="bk">
-<div class="bk-demo-banner">🔬 Interactive demos with <b>synthetic data only</b> — they illustrate the platforms Bartek builds. No clinical data, nothing is processed. © Bartek LLC</div>
-<div class="bk-topbar"><div class="bk-brand"><span class="dot"></span>BARTEK&nbsp;LLC <small>| Interactive demos</small></div>
-  <div class="bk-nav"><a href="/">bartekllc.org</a></div></div>
-<div class="bk-hub">
-  <h1>See what I build — not just read about it</h1>
-  <p class="sub">Click-through demos of the medical-imaging AI platforms I develop end-to-end: run submission, orchestrated model pipelines, live monitoring, and QC. Synthetic data throughout.</p>
-  <div class="bk-cards3">
-    <a class="bk-demo-tile" href="oct.html">
-      <div class="thumb" style="background:linear-gradient(135deg,#0a1018,#16a3a3)"></div>
-      <div class="body"><h3><i class="fa-solid fa-eye" style="color:#16a3a3"></i> OCT / Ophthalmology</h3>
-      <p>Retinal layer segmentation (ILM/RPE/BM) + fluid detection on OCT B-scans, foundation-model + MoE.</p></div></a>
-    <a class="bk-demo-tile" href="pathology.html">
-      <div class="thumb" style="background:linear-gradient(135deg,#5b2a6e,#c0392b)"></div>
-      <div class="body"><h3><i class="fa-solid fa-microscope" style="color:#c0392b"></i> Histopathology</h3>
-      <p>Whole-slide pipeline: CLAM patching → Virchow2 features → ProgPath prognosis, Airflow-orchestrated.</p></div></a>
-    <a class="bk-demo-tile" href="pipeline.html">
-      <div class="thumb" style="background:linear-gradient(135deg,#160f2e,#a78bfa)"></div>
-      <div class="body"><h3><i class="fa-solid fa-diagram-project" style="color:#a78bfa"></i> AI / LLM Pipeline</h3>
-      <p>A generic orchestrator (beyond medical): plan an LLM workflow — RAG, structured extraction, guardrails — and run it over any data.</p></div></a>
+<meta name="description" content="Interactive click-through demos of the medical-imaging and AI/LLM pipelines BARTEK LLC builds. Synthetic data only.">
+<link rel="icon" type="image/png" href="/img/logo/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--accent:#00d4ff;--accent2:#7c3aed;--bg:#080d18;--bg2:#0d1428;--card:#111827;--text:#e2e8f0;--muted:#94a3b8;--faded:#64748b;--border:rgba(255,255,255,.06);--border-accent:rgba(0,212,255,.3)}
+*{box-sizing:border-box}body{margin:0;font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+.banner{background:rgba(0,212,255,.06);border-bottom:1px solid var(--border);color:#9fd8e8;font-size:12.5px;text-align:center;padding:7px 12px}
+.topnav{position:sticky;top:0;z-index:20;background:rgba(8,13,24,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.topnav .inner{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+.brand{font-family:'Space Grotesk';font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:-.02em}.brand span{color:var(--accent)}
+.topnav a.lnk{color:rgba(255,255,255,.7);font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-left:20px}.topnav a.lnk:hover{color:var(--accent)}
+.dhero{position:relative;text-align:center;padding:70px 20px 40px;overflow:hidden}
+.dhero .bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,212,255,.14),transparent 60%),radial-gradient(ellipse 55% 55% at 85% 90%,rgba(124,58,237,.10),transparent 55%)}
+.label{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);background:rgba(0,212,255,.12);border:1px solid var(--border-accent);border-radius:100px;padding:6px 16px;margin-bottom:1.3rem}
+.label .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.dhero h1{position:relative;font-size:clamp(2rem,5vw,3rem);margin:0 0 14px;letter-spacing:-.02em}
+.grad{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dhero .sub{position:relative;max-width:680px;margin:0 auto;color:var(--muted);font-size:1.02rem}
+.wrap{max-width:1140px;margin:0 auto;padding:10px 22px 40px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:10px}@media(max-width:840px){.grid{grid-template-columns:1fr}}
+.tile{display:block;background:var(--card);border:1px solid var(--border);border-radius:var(--radius,16px);border-radius:16px;overflow:hidden;color:inherit;transition:all .3s cubic-bezier(.4,0,.2,1)}
+.tile:hover{transform:translateY(-5px);border-color:var(--border-accent);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+.tile .thumb{height:120px;position:relative;display:flex;align-items:center;justify-content:center;font-size:34px}
+.tile .body{padding:18px}
+.tile h3{margin:0 0 7px;font-size:1.12rem}
+.tile p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.tile .go{color:var(--accent);font-size:.85rem;font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.chips span{font-size:11px;color:var(--faded);border:1px solid var(--border);border-radius:20px;padding:2px 9px}
+.btn-accent{display:inline-block;background:linear-gradient(120deg,var(--accent),#0891b2);color:#04121f;font-weight:700;padding:12px 22px;border-radius:10px;margin-top:24px}
+.btn-accent:hover{filter:brightness(1.08);color:#04121f}
+.note{color:var(--faded);font-size:.86rem;margin-top:26px;max-width:760px}
+footer{border-top:1px solid var(--border);text-align:center;color:var(--faded);font-size:.85rem;padding:24px}
+</style></head>
+<body>
+<div class="banner">🔬 Interactive demos with <b>synthetic data only</b> — they illustrate the platforms BARTEK LLC builds. No clinical data; nothing is processed.</div>
+<nav class="topnav"><div class="inner">
+  <a class="brand" href="/">BARTEK <span>LLC</span></a>
+  <div><a class="lnk" href="/">Home</a><a class="lnk" href="/#portfolio">Portfolio</a><a class="lnk" href="/#contact">Contact</a></div>
+</div></nav>
+<header class="dhero"><div class="bg"></div>
+  <span class="label"><span class="dot"></span> Interactive Demos</span>
+  <h1>See what I build — <span class="grad">not just read about it</span></h1>
+  <p class="sub">Click-through demos of the pipelines I develop end to end: run submission, an AI planning assistant, orchestrated model stages, live monitoring, and an inspector. Synthetic data throughout.</p>
+</header>
+<section class="wrap">
+  <div class="grid">
+    <a class="tile" href="pathology.html"><div class="thumb" style="background:linear-gradient(135deg,#0a1220,#00d4ff)"><i class="fa-solid fa-microscope" style="color:#04121f"></i></div>
+      <div class="body"><div class="chips"><span>CLAM</span><span>Virchow2</span><span>ProgPath</span></div>
+        <h3>HistoSuite · Pathology</h3><p>Whole-slide pipeline with an AI assistant, prognosis and a patient risk/survival inspector.</p><span class="go">Open demo <i class="fa-solid fa-arrow-right"></i></span></div></a>
+    <a class="tile" href="oct.html"><div class="thumb" style="background:linear-gradient(135deg,#081512,#2dd4bf)"><i class="fa-solid fa-eye" style="color:#04121f"></i></div>
+      <div class="body"><div class="chips"><span>VisionFM</span><span>MoE</span><span>ONNX</span></div>
+        <h3>RetinaSuite · OCT</h3><p>Retinal layer segmentation + fluid detection, with a referable-disease findings inspector.</p><span class="go">Open demo <i class="fa-solid fa-arrow-right"></i></span></div></a>
+    <a class="tile" href="pipeline.html"><div class="thumb" style="background:linear-gradient(135deg,#0e0b1c,#7c3aed)"><i class="fa-solid fa-diagram-project" style="color:#fff"></i></div>
+      <div class="body"><div class="chips"><span>RAG</span><span>Fine-tuned LLM</span><span>Guardrails</span></div>
+        <h3>FlowSuite · AI / LLM</h3><p>A generic pipeline (beyond medical): plan an LLM workflow — extraction, guardrails — and run it.</p><span class="go">Open demo <i class="fa-solid fa-arrow-right"></i></span></div></a>
   </div>
-  <p style="color:#69788c;font-size:13px;margin-top:26px">Each demo shows a live-looking run queue, an AI model recommender, and a result/QC viewer with segmentation overlays. Everything is synthetic — these illustrate architecture and workflow, not any client's system.</p>
-  <p style="margin-top:18px"><a class="bk-btn" style="display:inline-block;width:auto;padding:11px 20px" href="/">← Back to bartekllc.org</a></p>
-</div>
-<div class="bk-foot">Bartek LLC — medical-imaging AI &amp; MLOps · cris.rbarreram@gmail.com</div>
+  <p class="note">Each demo has a welcome walkthrough, an AI assistant that plans and runs the pipeline from plain English, animated stages, and a result inspector. Everything is synthetic — these illustrate architecture and workflow, not any client's system.</p>
+  <a class="btn-accent" href="/"><i class="fa-solid fa-arrow-left"></i> Back to bartekllc.org</a>
+</section>
+<footer>BARTEK LLC — medical-imaging AI &amp; MLOps · <a href="mailto:main@bartekllc.org">main@bartekllc.org</a></footer>
 </body></html>

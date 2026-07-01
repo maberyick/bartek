@@ -223,6 +223,9 @@ header.hero {
     text-align: center;
     overflow: hidden;
     background-color: $bg-primary;
+    // clear the fixed navbar so the "AI for Healthcare" label never sits under it
+    padding-top: 96px;
+    padding-bottom: 40px;
 
     .hero-bg {
         position: absolute;
