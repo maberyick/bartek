@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Histopathology Demo | BARTEK LLC</title>
+<link rel="stylesheet" href="assets/demo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head><body>
+<script src="assets/demo.js"></script>
+<script>BK.mount({
+  title:'Histopathology / WSI', platform:'HistoSuite — whole-slide pipeline',
+  modalityOpts:['Whole-slide image (.svs / .tiff)','Patch set (.png)'], dropLabel:'a whole-slide image', casePrefix:'WSI', perDay:64,
+  stages:['Ingest','Convert','Patch (CLAM)','Features (Virchow2)','Prognosis (ProgPath)','Finalize'],
+  models:[
+    {name:'Virchow2-FM', why:'foundation-model features for this tissue type'},
+    {name:'ProgPath', why:'slide-level prognosis on this cohort'},
+    {name:'HistoQC', why:'screen slide for artifacts first'},
+    {name:'StarDist', why:'nuclei segmentation add-on'}],
+  metrics:()=>{const R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(R(a,b+1)),pick=a=>a[RI(0,a.length-1)];
+    return [['Prognosis',pick(['low','intermediate','high'])+' ('+R(0.1,0.9).toFixed(2)+')'],['Tumor region (IoU)',R(0.86,0.94).toFixed(3)],
+            ['Patches',RI(1800,4200)],['Runtime',RI(40,140)+' s']];},
+  legend:[['Tumor region','#c0392b'],['Patch grid','#16a3a3']],
+  image:(ov)=>BK.pathoImage(ov),
+  footer:"HistoSuite demo — Bartek LLC. Synthetic H&E patches and overlays; CLAM/Virchow2/ProgPath are public methods. Illustrates the workflow, not any client system."
+});</script>
+</body></html>

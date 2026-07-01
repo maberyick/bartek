@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OCT Demo | BARTEK LLC</title>
+<link rel="stylesheet" href="assets/demo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head><body>
+<script src="assets/demo.js"></script>
+<script>BK.mount({
+  title:'Ophthalmology / OCT', platform:'RetinaSuite — OCT segmentation pipeline',
+  modalityOpts:['OCT volume (.dcm / .vol)','Single B-scan (.png)'], dropLabel:'an OCT volume', casePrefix:'OCT', perDay:87,
+  stages:['Ingest','Normalize','Layer segmentation','Lesion / fluid detect','QC','Report'],
+  models:[
+    {name:'VisionFM-Seg', why:'foundation-model retinal layer segmentation'},
+    {name:'MoE-Retina', why:'routes to an expert for complex pathology'},
+    {name:'UNet-baseline', why:'fast, high accuracy on clean scans'}],
+  metrics:()=>{const R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(R(a,b+1)),pick=a=>a[RI(0,a.length-1)];
+    return [['Layers (mean Dice)',R(0.93,0.98).toFixed(3)],['Central subfield',RI(250,340)+' µm'],
+            ['Fluid volume',pick(['0.0 nL','12 nL','34 nL','71 nL'])],['Inference','1.'+RI(1,9)+' s']];},
+  legend:[['ILM','#16e0c0'],['RPE','#ffd24d'],['BM','#ff6b6b']],
+  image:(ov,path)=>BK.octImage(ov,path),
+  footer:"RetinaSuite demo — Bartek LLC. Synthetic B-scans and overlays; illustrates the OCT segmentation workflow, not any client system."
+});</script>
+</body></html>

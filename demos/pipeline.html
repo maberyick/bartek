@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Imaging Pipeline Platform Demo | BARTEK LLC</title>
+<link rel="stylesheet" href="assets/demo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head><body>
+<script src="assets/demo.js"></script>
+<script>BK.mount({
+  title:'Medical-Imaging Pipeline Platform', platform:'Pipeline Platform — modality-agnostic',
+  modalityOpts:['OCT','Histopathology','Radiology','Any imaging modality'], dropLabel:'imaging cases', casePrefix:'CASE', perDay:120,
+  stages:['Ingest','Preprocess','Foundation model','Task head','QC','Report'],
+  models:[
+    {name:'Foundation-Seg', why:'general segmentation across modalities'},
+    {name:'MoE-Router', why:'routes each case to the best expert model'},
+    {name:'QC-Gate', why:'quality screen before release'}],
+  metrics:()=>{const R=(a,b)=>a+Math.random()*(b-a),RI=(a,b)=>Math.floor(R(a,b+1));
+    return [['Task score (Dice/IoU)',R(0.88,0.97).toFixed(3)],['Cases / day',RI(90,140)],
+            ['Containers up',RI(12,24)],['Avg runtime',RI(3,90)+' s']];},
+  legend:[['Region','#16e0c0'],['QC grid','#16a3a3']],
+  image:(ov,path)=>BK.genericImage(ov),
+  footer:"Pipeline Platform demo — Bartek LLC. Synthetic data. Shows the end-to-end architecture (submission → orchestration → models → QC) that adapts to any imaging modality."
+});</script>
+</body></html>
