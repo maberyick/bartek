@@ -43,8 +43,7 @@ def build():
     box(3, 5, 4, 6, BLUE); holes.add((4, 5))                        # left ear ornament (hole center)
     box(15, 17, 4, 6, BLUE); holes.add((16, 5))                     # right ear ornament
     put(6, 5, BLUE); put(14, 5, BLUE)                               # bridge ears -> face
-    holes.update({(9, 5), (11, 5)})                                 # eyes = two pixel holes
-    holes.update({(9, 7), (10, 7), (11, 7)})                        # mouth slit
+    # (face holes removed — solid face for now; totem shelved as an alt emblem)
     put(10, 9, BLUE)                                                # neck
 
     # WINGS (teal) + shoulders (blue)

@@ -82,17 +82,10 @@ def helix(tile):
 def wordmark(tile):
     tc = LIGHT if tile else INK
     by = BASE_H + 32
-    # apex of the "A" (2nd glyph) for the little sphere
-    ax, ay = CX - 64, by - 20
-    grad = ('<defs><radialGradient id="sph" cx="35%" cy="30%" r="75%">'
-            f'<stop offset="0%" stop-color="#9ff3ea"/><stop offset="55%" stop-color="{TEAL}"/>'
-            '<stop offset="100%" stop-color="#0f8f86"/></radialGradient></defs>')
-    txt = (f'<text x="{CX}" y="{by}" text-anchor="middle" '
-           f'font-family="\'Segoe UI\',\'Helvetica Neue\',Arial,sans-serif" '
-           f'font-size="27" font-weight="800" letter-spacing="1.5" fill="{tc}">BARTEK '
-           f'<tspan fill="{TEAL}">LLC</tspan></text>')
-    sphere = f'<circle cx="{ax}" cy="{ay}" r="5.5" fill="url(#sph)" stroke="{"#0a121f" if tile else NAVY}" stroke-width="0.8"/>'
-    return grad + txt + sphere
+    return (f'<text x="{CX}" y="{by}" text-anchor="middle" '
+            f'font-family="\'Segoe UI\',\'Helvetica Neue\',Arial,sans-serif" '
+            f'font-size="27" font-weight="800" letter-spacing="1.5" fill="{tc}">BARTEK '
+            f'<tspan fill="{TEAL}">LLC</tspan></text>')
 
 
 def svg(tile=False, word=False):
