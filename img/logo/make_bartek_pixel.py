@@ -1,36 +1,55 @@
 #!/usr/bin/env python3
-"""Pixel-art BARTEK mark — a pixel DNA double-helix (matches the libélula style).
+"""Pixel-art BARTEK mark — a pre-Columbian (Tolima-style) face atop a pixel DNA helix.
+Matches the clean SVG concept + the libélula pixel style.
 Run: python make_bartek_pixel.py  ->  bartek_pixel.svg (+ _tile.svg)
 """
 import math
 import os
 
-BLUE, TEAL, RUNG, NAVY, OUTLINE = "#3f8fe0", "#2bd4c0", "#6f7fb0", "#0e1c33", "#24304a"
-COLS, ROWS = 13, 21
-CX, AMP, TURNS = 6, 5, 2.0
+GOLD, BLUE, TEAL, RUNG, NAVY, OUTLINE = "#e0a92e", "#3f8fe0", "#2bd4c0", "#6f7fb0", "#0e1c33", "#24304a"
+COLS = 13
+CXP, AMP, TURNS, HELIX_ROWS = 6, 5, 1.5, 16
 PX, PAD = 12, 12
+
+# gold pre-Columbian face (G), each row 13 chars, center col 6
+FACE = [
+    "...G.....G...",   # horn tips
+    "...GG...GG...",   # horns
+    "....GGGGG....",   # headdress crown
+    "..G.GGGGG.G..",   # ears + head
+    "..G.G.G.G.G..",   # ears + eyes + nose
+    "..G.GGGGG.G..",   # ears + head
+    "....G.G.G....",   # mouth / teeth
+    "....GGGGG....",   # jaw
+    "......G......",   # neck
+]
+ROWS = len(FACE) + HELIX_ROWS
 
 
 def cells():
-    """Return dict (x,y)->color for a pixel DNA double-helix (two crossing strands)."""
     grid = {}
-    prev = None
-    for r in range(ROWS):
-        t = r / (ROWS - 1)
-        ph = t * TURNS * 2 * math.pi + math.pi / 2
-        x1 = round(CX + AMP * math.sin(ph))
-        x2 = round(CX - AMP * math.sin(ph))
-        # short rung only near the crossings (where strands are close) — subtle, not a ladder
-        if abs(x1 - x2) <= 3 and abs(x1 - x2) >= 1:
-            for x in range(min(x1, x2), max(x1, x2) + 1):
-                grid.setdefault((x, r), RUNG)
-        # connect strands vertically/diagonally so they read as continuous curves
-        if prev:
-            for (px_, col) in ((prev[0], BLUE), (prev[1], TEAL)):
-                pass
+    for r, row in enumerate(FACE):
+        for c, ch in enumerate(row):
+            if ch == "G":
+                grid[(c, r)] = GOLD
+    p1 = p2 = CXP  # strands start at the neck (center) so they connect to the face
+    for hr in range(HELIX_ROWS):
+        r = len(FACE) + hr
+        t = hr / (HELIX_ROWS - 1)
+        ph = t * TURNS * 2 * math.pi                    # start at center crossing
+        x1 = round(CXP + AMP * math.sin(ph))
+        x2 = round(CXP - AMP * math.sin(ph))
+        # a short rung tick only at the widest points
+        if abs(x1 - x2) >= 6:
+            grid.setdefault((CXP, r), RUNG)
+        # thin continuous strands: bridge from previous row's x to this row's x
+        for x in range(min(p1, x1), max(p1, x1) + 1):
+            grid[(x, r)] = BLUE
+        for x in range(min(p2, x2), max(p2, x2) + 1):
+            grid.setdefault((x, r), TEAL)
         grid[(x1, r)] = BLUE
-        grid[(x2, r)] = TEAL       # teal drawn on top at overlaps
-        prev = (x1, x2)
+        grid[(x2, r)] = TEAL
+        p1, p2 = x1, x2
     return grid
 
 
@@ -42,7 +61,6 @@ def svg(tile=False):
            f'shape-rendering="crispEdges" role="img" aria-label="BARTEK">']
     if tile:
         out.append(f'<rect x="2" y="2" width="{W-4}" height="{H-4}" rx="{W*0.22:.0f}" fill="{NAVY}"/>')
-    # soft outline behind edge pixels (readable on any bg)
     filled = set(g)
     for (x, y) in sorted(filled):
         if any((x+dx, y+dy) not in filled for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
