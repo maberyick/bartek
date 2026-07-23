@@ -6,7 +6,7 @@ Run: python make_bartek_totem.py  ->  bartek_totem.svg (+ _tile.svg)
 """
 import os
 
-BLUE, TEAL, NAVY, OUTLINE = "#2c6fbb", "#2bd4c0", "#0e1c33", "#1b2b47"
+BLUE, TEAL, NAVY, OUTLINE = "#2c6fbb", "#2bd4c0", "#0e1c33", "#54637a"  # soft outline (libélula style) reads on any bg
 COLS, ROWS, CX = 21, 31, 10
 PX, PAD = 12, 14
 
